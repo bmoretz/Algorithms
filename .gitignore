@@ -17,3 +17,4 @@ UnionFind/x64/Debug/vc140.pdb
 *.sdf
 *.vssscc
 UnionFind/Data/largeUF.txt
+ipch/

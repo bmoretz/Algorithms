@@ -5,7 +5,7 @@ void ExecuteManually();
 
 int main()
 {
-	ExecuteFromFile( "Data\\largeUF.txt" );
+	ExecuteFromFile( "Data\\TinyUF.txt" );
 
 	cout << "Press ENTER to continue...";
 

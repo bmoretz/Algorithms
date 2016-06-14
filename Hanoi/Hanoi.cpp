@@ -22,7 +22,7 @@ bool disk::operator > ( const disk & r )
 
 disk::~disk() { }
 
-hanoi::hanoi( int tower_count, int disk_count )
+hanoi::hanoi( int disk_count )
 {
 	moves = 0, max_disk_size = disk_count;
 
@@ -31,7 +31,7 @@ hanoi::hanoi( int tower_count, int disk_count )
 
 	towers[ 0 ] = initial;
 
-	for( auto current = 1; current < disk_count; current++ )
+	for( auto current = 1; current < TOWER_COUNT; current++ )
 	{
 		towers[ current ] = tower();
 	}

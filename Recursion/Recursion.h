@@ -12,4 +12,6 @@ public:
 
 	static int factoral( int number );
 	static int count_down( int from );
+	static int count7( int n );
+	static int count8( int n );
 };

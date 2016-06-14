@@ -9,6 +9,8 @@
 
 using namespace std;
 
+#define TOWER_COUNT 3
+
 struct disk
 {
 public:
@@ -28,7 +30,7 @@ typedef vector<disk> tower;
 class hanoi
 {
 public:
-	hanoi( int towers, int disks );
+	hanoi( int disks );
 	~hanoi();
 
 	void print();

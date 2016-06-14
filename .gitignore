@@ -18,3 +18,13 @@ UnionFind/x64/Debug/vc140.pdb
 *.vssscc
 UnionFind/Data/largeUF.txt
 ipch/
+Recursion/x64/Debug/vc140.idb
+Algorithms.VC.opendb
+Recursion/x64/Debug/Recursion.tlog/CL.command.1.tlog
+Recursion/x64/Debug/Recursion.tlog/CL.read.1.tlog
+Recursion/x64/Debug/Recursion.tlog/CL.write.1.tlog
+Recursion/x64/Debug/Recursion.tlog/Recursion.lastbuildstate
+Recursion/x64/Debug/Recursion.tlog/link.command.1.tlog
+Recursion/x64/Debug/Recursion.tlog/link.read.1.tlog
+Recursion/x64/Debug/Recursion.tlog/link.write.1.tlog
+Recursion/x64/Debug/hanoi.obj.enc

@@ -23,4 +23,6 @@ public:
 	static int fibonacci( int n );
 	static int powerN( int base, int n );
 	static int countX( string str );
+	static int countHi( string str );
+	static string changeXY( string str );
 };

@@ -12,7 +12,9 @@ void execute( eval, string );
 
 int main()
 {
-	execute( Recursion::factoral, "factoral (n!)" );
+	cout << Recursion::countHi( "xhixhxihihhhih" );
+
+	execute( Recursion::factorial, "factoral (n!)" );
 	execute( Recursion::count_down, "count down" );
 	
 	cout << "Count 7: " <<  Recursion::count7( 707 );

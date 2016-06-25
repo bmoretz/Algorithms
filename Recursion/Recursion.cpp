@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "Recursion.h"
 
-
 Recursion::Recursion() { }
-
 
 Recursion::~Recursion() { }
 
@@ -31,7 +29,8 @@ int Recursion::fibonacci( int n )
 
 // We have a number of bunnies and each bunny has two big floppy ears. 
 // We want to compute the total number of ears across all the bunnies recursively (without loops or multiplication).
-int Recursion::bunnyEars( int bunnies ) {
+int Recursion::bunnyEars( int bunnies ) 
+{
 	if( bunnies == 0 )
 		return 0;
 
@@ -109,6 +108,7 @@ int Recursion::count8( int n )
 	return count8( n / 10 );
 }
 
+
 //  Given base and n that are both 1 or more, compute recursively( no loops )
 // the value of base to the n power, so powerN( 3, 2 ) is 9 ( 3 squared ).
 int Recursion::powerN( int base, int n )
@@ -129,4 +129,26 @@ int Recursion::countX( string str )
 
 	return str.at( 0 ) == L'x' ?
 		1 + countX( next ) : countX(  next );
+}
+
+// Given a string, compute recursively( no loops ) a new string where all the lowercase 'x' chars have been changed to 'y' chars.
+string Recursion::changeXY( string str )
+{
+	if( str.empty() )
+		return str;
+
+	string c = string( 1, str.at( str.length() - 1 ) );
+
+	return changeXY( str.substr( 0, str.length() - 1 ) ) + ( c == "x" ? "y" : c );
+}
+
+// Given a string, compute recursively( no loops ) the number of times lowercase "hi" appears in the string.
+int Recursion::countHi( string str )
+{
+	if( str.empty() )
+		return 0;
+
+	string iter = str.substr( 1 );
+
+	return countHi( iter ) + ( str.compare( 0, 2, "hi" ) == 0 ? 1 : 0 );
 }

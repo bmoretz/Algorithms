@@ -3,6 +3,7 @@
 #include "stdafx.h"
 
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -25,4 +26,10 @@ public:
 	static int countX( string str );
 	static int countHi( string str );
 	static string changeXY( string str );
+	static string changePi( string str );
+	static string noX( string str );
+	static bool array6( array<int, 10> nums, int index );
+	static int array11( array<int, 10> nums, int index );
+	static bool array220( array<int, 10> nums, int index );
+	static string allStar( string str );
 };

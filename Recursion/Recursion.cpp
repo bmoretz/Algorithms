@@ -86,7 +86,7 @@ int Recursion::count7( int n )
 	if( n == 0 )
 		return 0;
 
-	n % 10 == 7 ?
+	return n % 10 == 7 ?
 		1 + count7( n / 10 ) : 
 		count7( n / 10 )
 	;
@@ -151,4 +151,66 @@ int Recursion::countHi( string str )
 	string iter = str.substr( 1 );
 
 	return countHi( iter ) + ( str.compare( 0, 2, "hi" ) == 0 ? 1 : 0 );
+}
+
+// Given a string, compute recursively( no loops ) a new string where all appearances of "pi" have been replaced by "3.14".
+string Recursion::changePi( string str )
+{
+	if( str.empty() )
+		return str;
+
+	string next = str.substr( 1 );
+
+	return ( str.compare( 0, 2, "pi" ) == 0 ?
+		( "3.14" + changePi( next.substr( 1 ) ) ) :
+		( str.substr( 0, 1 ) + changePi( next ) )
+	);
+}
+
+// Given a string, compute recursively a new string where all the 'x' chars have been removed.
+string Recursion::noX( string str )
+{
+	if( str.empty() )
+		return str;
+
+	return ( str.compare( 0, 1, "x" ) == 0 ) ?
+		( noX( str.substr( 1 ) ) ) : ( str.substr( 0, 1 ) + noX( str.substr( 1 ) ) );
+}
+
+// Given an array of ints, compute recursively if the array contains a 6.
+bool Recursion::array6( array<int, 10> nums, int index )
+{
+	if( nums.size() == index )
+		return false;
+
+	if( nums.at( index ) == 6 )
+		return true;
+
+	return array6( nums, ++index );
+}
+
+// Given an array of ints, compute recursively the number of times that the value 11 appears in the array. 
+int Recursion::array11( array<int, 10> nums, int index )
+{
+	if( nums.size() == index )
+		return false;
+
+	return ( nums.at( index ) == 11 ? 1 : 0 ) + array11( nums, ++index );
+}
+
+// Given an array of ints, compute recursively if the array contains somewhere a value followed in the array by that value times 10.
+bool Recursion::array220( array<int, 10> nums, int index )
+{
+	if( nums.size() >= index - 1 )
+		return false;
+
+	if( ( nums[ index ] * 10 ) == nums[ index + 1 ] )
+		return true;
+
+	return array220( nums, ++index );
+}
+
+string Recursion::allStar( string str )
+{
+	return "";
 }

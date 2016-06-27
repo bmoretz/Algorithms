@@ -30,6 +30,13 @@ public:
 	static string noX( string str );
 	static bool array6( array<int, 10> nums, int index );
 	static int array11( array<int, 10> nums, int index );
-	static bool array220( array<int, 10> nums, int index );
+	static bool array220( int nums[], int size, int index );
 	static string allStar( string str );
+	static string pairStar( string str );
+	static string endX( string str );
+	static int countPairs( string str );
+	static int countAbc( string str );
+	static int count11( string str );
+	static string stringClean( string str );
+	static int countHi2( string str );
 };

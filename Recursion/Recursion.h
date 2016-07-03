@@ -39,4 +39,6 @@ public:
 	static int count11( string str );
 	static string stringClean( string str );
 	static int countHi2( string str );
+	static string parenBit( string str );
+	static bool nestParen( string str );
 };

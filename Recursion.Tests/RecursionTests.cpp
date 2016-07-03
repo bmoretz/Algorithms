@@ -353,5 +353,40 @@ namespace RecursionTests
 			Assert::AreEqual( Recursion::countHi2( "" ), 0, L"countHi2 \"\" -> 0", LINE_INFO() );
 			Assert::AreEqual( Recursion::countHi2( "Hellohi" ), 1, L"countHi2 \"Hellohi\" -> 1", LINE_INFO() );
 		}
+
+		TEST_METHOD( Test_parenBit )
+		{
+			Assert::AreEqual( Recursion::parenBit( "xyz(abc)123" ).c_str(), "(abc)", L"parenBit \"xyz(abc)123\" -> \"(abc)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "x(hello)" ).c_str(), "(hello)", L"parenBit \"x(hello)\" -> \"(hello)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "(xy)1" ).c_str(), "(xy)", L"parenBit \"(xy)1\" -> \"(xy)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "not really (possible)" ).c_str(), "(possible)", L"parenBit \"not really (possible)\" -> \"(possible)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "(abc)" ).c_str(), "(abc)", L"parenBit \"(abc)\" -> \"(abc)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "(abc)xyz" ).c_str(), "(abc)", L"parenBit \"(abc)xyz\" -> \"(abc)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "(abc)x" ).c_str(), "(abc)", L"parenBit \"(abc)x\" -> \"(abc)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "(x)" ).c_str(), "(x)", L"parenBit \"(x)\" -> \"(x)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "()" ).c_str(), "()", L"parenBit \"()\" -> \"()\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "res (ipsa) loquitor" ).c_str(), "(ipsa)", L"parenBit \"res (ipsa) loquitor\" -> \"(ipsa)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "hello(not really)there" ).c_str(), "(not really)", L"parenBit \"hello(not really)there\" -> \"(not really)\"", LINE_INFO() );
+			Assert::AreEqual( Recursion::parenBit( "ab(ab)ab" ).c_str(), "(ab)", L"parenBit \"ab(ab)ab\" -> \"(ab)\"", LINE_INFO() );
+		}
+
+		TEST_METHOD( Test_nestParen )
+		{
+			Assert::AreEqual( Recursion::nestParen( "(())" ), true, L"nestParen \"(())\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((()))" ), true, L"nestParen \"((()))\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(((x))" ), false, L"nestParen \"(((x))\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((())" ), false, L"nestParen \"((())\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((()()" ), false, L"nestParen \"((()()\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "()" ), true, L"nestParen \"()\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "" ), true, L"nestParen \"\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(yy)" ), false, L"nestParen \"(yy)\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(())" ), true, L"nestParen \"(())\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(((y))" ), false, L"nestParen \"(((y))\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((y)))" ), false, L"nestParen \"((y)))\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((()))" ), true, L"nestParen \"((()))\" -> true", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(())))" ), false, L"nestParen \"(())))\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "((yy())))" ), false, L"nestParen \"((yy())))\" -> false", LINE_INFO() );
+			Assert::AreEqual( Recursion::nestParen( "(((())))" ), true, L"nestParen \"(((())))\" -> true", LINE_INFO() );
+		}
 	};
 }

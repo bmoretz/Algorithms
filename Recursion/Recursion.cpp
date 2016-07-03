@@ -311,3 +311,25 @@ int Recursion::countHi2( string str )
 
 	return countHi2( str.substr( pos == -1 ? str.length() : pos + 1 ) );
 }
+
+// Given a string that contains a single pair of parenthesis, compute recursively a new string made of only of the parenthesis and their contents, so "xyz(abc)123" yields "(abc)".
+string Recursion::parenBit( string str )
+{
+	if( str.empty() || ( str.length() >= 1 && str.at( 0 ) == '(' && str.at( str.length() - 1 ) == ')' ) )
+		return str;
+
+	return parenBit( str.substr( str.at( 0 ) == '(' ? 0 : 1, str.at( str.length() - 1 ) == ')' ? str.length() : str.length() - 1 ) );
+}
+
+// Given a string, return true if it is a nesting of zero or more pairs of parenthesis, like "(())" or "((()))". Suggestion: check the first and last chars, and then recur on what's inside them.
+bool Recursion::nestParen( string str )
+{
+	if( str.empty() )
+		return true;
+
+	if( str.length() >= 2 )
+		return ( str.at( 0 ) == '(' && str.at( str.length() - 1 ) == ')' ) && 
+			nestParen( str.substr( 1, str.length() - 2 ) );
+
+	return false;
+}

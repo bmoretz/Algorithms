@@ -41,62 +41,52 @@ hanoi::~hanoi() { }
 
 void hanoi::solve()
 {
-	move( towers.at( 0 ), towers.at( 1 ), towers.at( 2 ) );
+	move( max_disk_size, towers.at( 0 ), towers.at( 1 ), towers.at( 2 ) );
 }
 
-void hanoi::move( tower & source, tower & aux, tower & dest )
+bool is_ordered( tower const & tower )
 {
-	print();
+	if( tower.size() <= 1 )
+		return true;
 
-	if( source.empty() )
+	for( int index = 1; index < tower.size(); index++ )
+	{
+		if( tower[ index ].width < tower[ index - 1 ].width )
+			return false;
+	}
+
+	return true;
+}
+
+void hanoi::move( int disks, tower & source, tower & aux, tower & dest )
+{
+	if( disks == 0 )
 		return;
+	
+	move( disks - 1, source, dest, aux );
+
+	swap_top( source, dest );
+
+	move( disks - 1, aux, source, dest );
+}
+
+void hanoi::swap_top( tower & s, tower & d )
+{
+	cout << "move: " << moves << endl;
+	cout << "Before Swap: " << endl << endl;
 
 	moves++;
 
-	auto 
-		src_top = peek_top( source ),
-		dest_top = peek_top( dest ),
-		aux_top = peek_top( aux );
-
-	if( src_top < dest_top )
-	{	
-		push_front( dest, pop_top( source ) );
-
-		move( source, dest, aux );
-	}
-	else if( src_top < aux_top )
-	{
- 		push_front( aux, pop_top( source ) );
-
-		move( aux, dest, source );
-	}
-}
-
-void hanoi::push_front( tower & tower, disk disk )
-{
-	tower.insert( tower.begin(), disk );
-}
-
-disk hanoi::peek_top( tower tower )
-{
-	if( tower.empty() )
-		return disk();
-
-	return tower[ 0 ];
-}
-
-disk hanoi::pop_top( tower& tower )
-{
-	if( tower.empty() )
-		return disk();
-
-	disk result;
+	print();
 	
-	result = tower[ 0 ];
+	if( !s.empty() )
+		d.insert( d.begin(), s[ 0 ] );
 
-	tower.erase( tower.begin() );
+	if( s.size() > 0 )
+		s.erase( s.begin() );
 
-	return result;
+	cout << "After Swap: " << endl << endl;
+	print();
 }
 
 void hanoi::print()
@@ -111,13 +101,15 @@ void hanoi::print()
 	cout << endl;
 }
 
-map<int, string> hanoi::display_towers( map<int, tower> towers )
+map<int, string> hanoi::display_towers( array<tower, TOWER_COUNT> towers )
 {
 	map<int, string> out;
 
-	for( auto tower : towers )
+	for( auto index = 0; index < towers.size(); index++ )
 	{
-		int paddingRows = max_disk_size - tower.second.size();
+		auto tower = towers[ index ];
+
+		int paddingRows = max_disk_size - tower.size();
 
 		for( auto row = 0; row < max_disk_size; row++ )
 		{
@@ -129,13 +121,15 @@ map<int, string> hanoi::display_towers( map<int, tower> towers )
 			}
 			else
 			{
-				auto disk = tower.second.at( row - paddingRows );
+				auto disk = tower.at( row - paddingRows );
 				width = disk.width;
 				spaces = max_disk_size - disk.width + 1;
 			}
 
 			out[ row ] = out[ row ] + string( width, '*' ) + string( spaces, ' ' );
 		}
+
+		out[ max_disk_size ]+= std::to_string( index + 1 ) + string( max_disk_size, ' ' );
 	}
 
 	return out;

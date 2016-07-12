@@ -2,10 +2,11 @@
 
 #include "stdafx.h"
 
-#include <map>
+#include <array>
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -36,18 +37,16 @@ public:
 	void print();
 	void solve();
 
-	void move( tower & source, tower & aux, tower & dest );
+	void move( int disks, tower & source, tower & aux, tower & dest );
 
 private:
-	map<int, tower> towers;
+	array<tower, TOWER_COUNT> towers;
 	
-	disk pop_top( tower & tower );
-	disk peek_top( tower tower );
-
-	void push_front( tower & tower, disk disk );
+	bool is_ordered( tower const & tower );
+	void swap_top( tower & source, tower & dest );
 
 	int max_disk_size;
 	int moves;
 
-	map<int,string> display_towers( map<int,tower> tower );
+	map<int, string> display_towers( array<tower, TOWER_COUNT> tower );
 };

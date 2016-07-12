@@ -6,16 +6,17 @@
 
 int main()
 {
-	int disks = 3;
+	int disks = 4;
 
-	// cout << "Enter number of disks: ";
-
-	// cin >> disks;
+	cout << "Enter number of disks: ";
+	cin >> disks;
 
 	hanoi h( disks );
 
 	h.solve();
 
 	cout << endl;
+
+	_getch();
 }
 

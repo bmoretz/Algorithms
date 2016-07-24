@@ -3,7 +3,6 @@
 
 namespace Hanoi
 {
-
 	disk::disk()
 		: width{ 0 }
 	{ }

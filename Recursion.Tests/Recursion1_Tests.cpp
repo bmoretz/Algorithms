@@ -5,7 +5,7 @@
 using namespace Recursion1;
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace RecursionTests
+namespace Recursion1_Tests
 {		
 	TEST_CLASS(RecursionTests)
 	{

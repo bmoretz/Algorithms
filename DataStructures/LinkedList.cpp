@@ -20,7 +20,7 @@ LinkedList::~LinkedList()
 
 		delete tmp;
 	}
-
+	
 	head = nullptr;
 }
 

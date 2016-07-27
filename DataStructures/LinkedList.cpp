@@ -3,27 +3,7 @@
 
 using namespace std;
 
-LinkedList::LinkedList()
-{
-	head = nullptr;
-}
-
-LinkedList::~LinkedList()
-{
-	Node * current = head;
-
-	while( current != nullptr )
-	{
-		Node * tmp = current;
-
-		current = current->next;
-
-		delete tmp;
-	}
-	
-	head = nullptr;
-}
-
+/*
 void LinkedList::insertBeg( int data )
 {
 	Node *newNode = new Node( data );
@@ -125,9 +105,12 @@ size_t LinkedList::length() const
 
 	while( current != nullptr )
 	{
+
 		current = current->next;
 		count++;
 	}
 
 	return count;
 }
+
+*/

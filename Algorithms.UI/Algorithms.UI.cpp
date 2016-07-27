@@ -34,19 +34,20 @@ void hanoi()
 
 void exec_list()
 {
-	LinkedList list;
+
+	LinkedList<int> list;
 
 	cout << list.to_string();
 	cout << "length: " << list.length() << endl;
 
 	for( int index = 0; index < 10; index++ )
 	{
-		list.insertEnd( index );
+		list.push_back( index );
 	}
 
 	cout << list.to_string();
 	cout << "length: " << list.length() << endl;
 
-	list.insertAt( -1, 5 );
+	//list.insertAt( -1, 5 );
 	cout << list.to_string();
 }

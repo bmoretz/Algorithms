@@ -35,3 +35,9 @@ DataStructures.Tests/x64/
 *.db
 Algorithms.UI/x64/
 UnionFind/x64/Debug/vc141.idb
+/.vs/Algorithms/v15/Browse.VC.opendb
+/.vs/Algorithms/v15/Solution.VC.db-shm
+/.vs/Algorithms/v15/Solution.VC.db-wal
+.vs/Algorithms/v15/Browse.VC.opendb
+.vs/Algorithms/v15/Solution.VC.db-shm
+.vs/Algorithms/v15/Solution.VC.db-wal

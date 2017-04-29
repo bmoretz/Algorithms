@@ -28,3 +28,10 @@ Recursion/x64/Debug/Recursion.tlog/link.command.1.tlog
 Recursion/x64/Debug/Recursion.tlog/link.read.1.tlog
 Recursion/x64/Debug/Recursion.tlog/link.write.1.tlog
 Recursion/x64/Debug/hanoi.obj.enc
+Recursion/x64/
+DataStructures/x64/
+Recursion.Tests/x64/
+DataStructures.Tests/x64/
+*.db
+Algorithms.UI/x64/
+UnionFind/x64/Debug/vc141.idb

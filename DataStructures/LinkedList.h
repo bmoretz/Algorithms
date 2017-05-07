@@ -247,16 +247,14 @@ namespace DataStructures
         if( source.head == nullptr )
             return;
 
-        Node<T>
-            *current = head,
-            *previous = nullptr;
+        Node<T> *current = nullptr;
 
-        auto position = 1;
+        auto position = 0;
 
         while( position < index )
         {
-            previous = current;
-            current = current->next;
+            current = current == nullptr ?
+                          head : current->next;
             position++;
         }
 
@@ -278,10 +276,17 @@ namespace DataStructures
             iter = iter->next;
         }
 
-        tmp->next = current;
-        current = srcHead;
-        
-        if( index == 0 )
-            head = current;
+        if( current != nullptr )
+            tmp->next = current->next;
+
+        if( current == nullptr )
+        {
+            tmp->next = head;
+            head = srcHead;
+        }
+        else
+        {
+            current->next = srcHead;
+        }
     }
 }

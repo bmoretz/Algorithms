@@ -29,10 +29,10 @@ namespace DataStructures
         string to_string() const;
 
         void push_back( T t );
-        void push_back( LinkedList<T> source );
+        void push_back( const LinkedList<T> &source );
 
         void push_front( T t );
-        void push_front( LinkedList<T> source );
+        void push_front( const LinkedList<T> &source );
 
         T get_value_at( int index );
 
@@ -139,14 +139,18 @@ namespace DataStructures
     }
 
     template <typename T>
-    void LinkedList<T>::push_back( LinkedList<T> source )
+    void LinkedList<T>::push_back( const LinkedList<T> &source )
     {
-        Node<T> *current = source.head;
+        Node<T> *src = source.head;
 
-        while( current != nullptr )
+        while( src != nullptr )
         {
-            push_back( current->data );
-            current = current->next;
+            Node<T> *newNode = new Node<T>( src->data );
+
+            tail->next = newNode;
+            tail = newNode;
+
+            src = src->next;
         }
     }
 
@@ -167,15 +171,30 @@ namespace DataStructures
     }
 
     template <typename T>
-    void LinkedList<T>::push_front( LinkedList<T> source )
+    void LinkedList<T>::push_front( const LinkedList<T> &source )
     {
-        Node<T> *current = source.head;
+        if( source.head == nullptr )
+            return;
 
-        while( current != nullptr )
+        Node<T> *tmp = head, *iter = source.head, 
+            *newNode, *prevNode = nullptr;
+
+        while( iter != nullptr )
         {
-            push_front( current->data );
-            current = current->next;
+            newNode = new Node<T>( iter->data );
+               
+            if( prevNode == nullptr )
+            {
+                head = newNode;
+            } else {
+                prevNode->next = newNode;
+            }
+
+            prevNode = newNode;
+            iter = iter->next;
         }
+
+        newNode->next = tmp;
     }
 
     template <typename T>

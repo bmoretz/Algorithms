@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "LinkedList.h"
+#include "Hanoi.h"
 
 using namespace std;
 
@@ -11,15 +12,14 @@ void hanoi();
 
 int main()
 {
-	exec_list();
+	hanoi();
 
     return 0;
 }
 
 void hanoi()
 {
-	/*
-	int disks = 4;
+	auto disks = 4;
 
 	cout << "Enter number of disks: ";
 	cin >> disks;
@@ -29,7 +29,7 @@ void hanoi()
 	h.solve();
 
 	cout << endl;
-	*/
+
 }
 
 void exec_list()
@@ -39,7 +39,7 @@ void exec_list()
 	cout << list.to_string();
 	cout << "length: " << list.length() << endl;
 
-	for( int index = 0; index < 10; index++ )
+	for( auto index = 0; index < 10; index++ )
 	{
 		list.push_back( index );
 	}

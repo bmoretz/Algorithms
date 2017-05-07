@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "UnionFind.h"
 
+
 UnionFind::UnionFind( int size )
 {
     max = size;
@@ -57,7 +58,7 @@ void UnionFind::display() const
 {
     for( auto inner = 0; inner < max; inner++ )
     {
-        std::cout << values[ inner ];
+        cout << values[ inner ];
     }
 
     cout << std::endl;

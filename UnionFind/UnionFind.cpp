@@ -6,7 +6,7 @@ UnionFind::UnionFind( int size )
 	max = size;
 	values = new int[ size ];
 
-	for( int index = 0; index < size; index++ )
+	for( auto index = 0; index < size; index++ )
 		values[ index ] = index;
 }
 
@@ -16,14 +16,14 @@ UnionFind::~UnionFind()
 		delete[] values;
 }
 
-void UnionFind::join( int l, int r )
+void UnionFind::join( int l, int r ) const
 {
 	if( valid( l, r ) )
 	{
-		int rValue = values[ r ];
-		int lValue = values[ l ];
-		
-		for( int index = 0; index < max; index++ )
+		auto rValue = values[ r ];
+		auto lValue = values[ l ];
+
+		for( auto index = 0; index < max; index++ )
 		{
 			if( values[ index ] == lValue )
 				values[ index ] = rValue;
@@ -31,9 +31,9 @@ void UnionFind::join( int l, int r )
 	}
 }
 
-bool UnionFind::connected( int l, int r )
+bool UnionFind::connected(int l, int r) const
 {
-	bool connected = false;
+	auto connected = false;
 
 	if( valid( l, r ) )
 	{
@@ -43,7 +43,7 @@ bool UnionFind::connected( int l, int r )
 	return connected;
 }
 
-bool UnionFind::valid( int l, int r )
+bool UnionFind::valid( int l, int r ) const
 {
 	if( !( l > max || l < 0 || r > max || r < 0 ) )
 	{
@@ -53,12 +53,12 @@ bool UnionFind::valid( int l, int r )
 	return false;
 }
 
-void UnionFind::display()
+void UnionFind::display() const
 {
-	for( int inner = 0; inner < max; inner++ )
+	for( auto inner = 0; inner < max; inner++ )
 	{
 		std::cout << values[ inner ];
 	}
 
-	std::cout << std::endl;
+	cout << std::endl;
 }

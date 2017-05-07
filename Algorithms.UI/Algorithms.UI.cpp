@@ -34,7 +34,7 @@ void hanoi()
 
 void exec_list()
 {
-	LinkedList<int> list;
+	DataStructures::LinkedList<int> list;
 
 	cout << list.to_string();
 	cout << "length: " << list.length() << endl;

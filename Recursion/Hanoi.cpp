@@ -12,12 +12,12 @@ namespace Hanoi
 		width = n;
 	}
 
-	bool disk::operator < ( const disk & r )
+	bool disk::operator < ( const disk & r ) const
 	{
 		return width < r.width || r.width == 0;
 	}
 
-	bool disk::operator > ( const disk & r )
+	bool disk::operator > ( const disk & r ) const
 	{
 		return r.width > width;
 	}
@@ -91,7 +91,7 @@ namespace Hanoi
 		print();
 	}
 
-	void hanoi::print()
+	void hanoi::print() const
 	{
 		vector<string> display( towers.size() );
 
@@ -103,7 +103,7 @@ namespace Hanoi
 		cout << endl;
 	}
 
-	map<int, string> hanoi::display_towers( array<tower, TOWER_COUNT> towers )
+	map<int, string> hanoi::display_towers( array<tower, TOWER_COUNT> towers ) const
 	{
 		map<int, string> out;
 

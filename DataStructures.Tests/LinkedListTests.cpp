@@ -2,6 +2,8 @@
 #include <boost/test/unit_test.hpp>
 #include "LinkedList.h"
 
+using namespace DataStructures;
+
 BOOST_AUTO_TEST_SUITE( Unit_Test_Suite )
 
 // Also covers get_value_at().

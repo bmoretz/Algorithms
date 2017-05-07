@@ -3,9 +3,7 @@
 #include "stdafx.h"
 
 #include <array>
-#include <algorithm>
 #include <vector>
-#include <string>
 #include <map>
 
 using namespace std;
@@ -17,12 +15,11 @@ namespace Hanoi
 
 	struct disk
 	{
-	public:
 		disk();
-		disk( int width );
+		explicit disk( int width );
 
-		bool operator < ( const disk & r );
-		bool operator > ( const disk & r );
+		bool operator < ( const disk & r ) const;
+		bool operator > ( const disk & r ) const;
 
 		~disk();
 
@@ -34,10 +31,10 @@ namespace Hanoi
 	class hanoi
 	{
 	public:
-		hanoi( int disks );
+		explicit hanoi( int disks );
 		~hanoi();
 
-		void print();
+		void print() const;
 		void solve();
 
 		void move( int disks, tower & source, tower & aux, tower & dest );
@@ -50,6 +47,6 @@ namespace Hanoi
 		int max_disk_size;
 		int moves;
 
-		map<int, string> display_towers( array<tower, TOWER_COUNT> tower );
+		map<int, string> display_towers( array<tower, TOWER_COUNT> tower ) const;
 	};
 }

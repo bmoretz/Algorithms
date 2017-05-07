@@ -4,181 +4,257 @@ using namespace std;
 
 namespace DataStructures
 {
-	template <typename T>
-	struct Node {
+    template <typename T>
+    struct Node
+    {
+        T data;
 
-		T data;
+        explicit Node( T val )
+        {
+            data = val;
+        }
 
-		Node( T val )
-		{
-			data = val;
-		}
+        Node *next = nullptr;
+    };
 
-		Node * next = nullptr;
-	};
+    template <typename T>
+    class LinkedList
+    {
+    public:
 
-	template<typename T>
-	class LinkedList
-	{
+        LinkedList();
+        ~LinkedList();
 
-	public:
+        size_t length() const;
+        string to_string() const;
 
-		LinkedList();
-		~LinkedList();
+        void push_back( T t );
+        void push_back( LinkedList<T> source );
 
-		size_t length() const;
-		string to_string() const;
+        void push_front( T t );
+        void push_front( LinkedList<T> source );
 
-		void push_back( T t );
-		void push_front( T t );
+        T get_value_at( int index );
 
-		T get_value_at( int index );
+        void insert_at( int index, T val );
+        void insert_at( int idnex, LinkedList<T> source );
 
-		void insert_at( int index, T val );
+        const Node<T>* first() const
+        {
+            return head;
+        }
 
-		const Node<T> * first() const
-		{
-			return head;
-		}
+        const Node<T>* last() const
+        {
+            return tail;
+        }
 
-		bool empty() const
-		{
-			return head != nullptr;
-		}
+        bool empty() const
+        {
+            return head != nullptr;
+        }
 
-	private:
-		Node<T> * head = nullptr;
-	};
+    private:
+        Node<T> *head = nullptr, *tail = nullptr;
+    };
 
-	template<typename T>
-	LinkedList<T>::LinkedList() { }
+    template <typename T>
+    LinkedList<T>::LinkedList()
+    {
+    }
 
-	template<typename T>
-	LinkedList<T>::~LinkedList()
-	{
-		while( head != nullptr )
-		{
-			Node<T> * tmp = head;
+    template <typename T>
+    LinkedList<T>::~LinkedList()
+    {
+        while( head != nullptr )
+        {
+            Node<T> *tmp = head;
 
-			head = head->next;
+            head = head->next;
 
-			delete tmp;
-		}
+            delete tmp;
+        }
 
-		head = nullptr;
-	}
+        head = nullptr;
+    }
 
-	template<typename T>
-	size_t LinkedList<T>::length() const
-	{
-		Node<T> * current = head;
+    template <typename T>
+    size_t LinkedList<T>::length() const
+    {
+        Node<T> *current = head;
 
-		size_t count = 0;
+        size_t count = 0;
 
-		while( current != nullptr )
-		{
-			current = current->next;
-			count++;
-		}
+        while( current != nullptr )
+        {
+            current = current->next;
+            count++;
+        }
 
-		return count;
-	}
+        return count;
+    }
 
-	template<typename T>
-	string LinkedList<T>::to_string() const
-	{
-		stringstream ss;
+    template <typename T>
+    string LinkedList<T>::to_string() const
+    {
+        stringstream ss;
 
-		if( head == nullptr ) {
-			ss << "List contains no elements";
-		}
-		else {
-			Node<T> * current = head;
-			auto index = 0;
+        if( head == nullptr )
+        {
+            ss << "List contains no elements";
+        }
+        else
+        {
+            Node<T> *current = head;
+            auto index = 0;
 
-			while( current != nullptr )
-			{
-				ss << "{i:" << ++index << ","
-					<< "v:" << std::to_string( current->data ) << "}";
+            while( current != nullptr )
+            {
+                ss << "{i:" << ++index << ","
+                    << "v:" << std::to_string( current->data ) << "}";
 
-				current = current->next;
-			}
-		}
+                current = current->next;
+            }
+        }
 
-		ss << endl;
+        ss << endl;
 
-		return ss.str();
-	}
+        return ss.str();
+    }
 
-	template<typename T>
-	void LinkedList<T>::push_back( T t )
-	{
-		Node<T> * newNode = new Node<T>( t );
+    template <typename T>
+    void LinkedList<T>::push_back( T t )
+    {
+        Node<T> *newNode = new Node<T>( t );
 
-		if( head == nullptr ) {
-			head = newNode;
-		}
-		else
-		{
-			Node<T> * current = head;
+        if( head == nullptr )
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 
-			while( current->next != nullptr )
-			{
-				current = current->next;
-			}
+    template <typename T>
+    void LinkedList<T>::push_back( LinkedList<T> source )
+    {
+        Node<T> *current = source.head;
 
-			current->next = newNode;
-		}
-	}
+        while( current != nullptr )
+        {
+            push_back( current->data );
+            current = current->next;
+        }
+    }
 
-	template<typename T>
-	void LinkedList<T>::push_front( T t )
-	{
-		Node<T> * newNode = new Node<T>( t );
+    template <typename T>
+    void LinkedList<T>::push_front( T t )
+    {
+        Node<T> *newNode = new Node<T>( t );
 
-		newNode->next = head;
-		head = newNode;
-	}
+        if( head == nullptr )
+        {
+            head = tail = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+        }
+    }
 
-	template<typename T>
-	T LinkedList<T>::get_value_at( int index )
-	{
-		Node<T> * current = head;
+    template <typename T>
+    void LinkedList<T>::push_front( LinkedList<T> source )
+    {
+        Node<T> *current = source.head;
 
-		auto position = 0;
+        while( current != nullptr )
+        {
+            push_front( current->data );
+            current = current->next;
+        }
+    }
 
-		while( current->next != nullptr && position < index )
-		{
-			current = current->next;
-			position++;
-		}
+    template <typename T>
+    T LinkedList<T>::get_value_at( int index )
+    {
+        Node<T> *current = head;
 
-		return position == index ?
-			current->data : T();
-	}
+        auto position = 0;
 
-	template<typename T>
-	void LinkedList<T>::insert_at( int index, T val )
-	{
-		Node<T> *current = head, *previous = nullptr;
+        while( current->next != nullptr && position < index )
+        {
+            current = current->next;
+            position++;
+        }
 
-		auto position = 0;
+        return position == index ?
+                   current->data : T();
+    }
 
-		while( current != nullptr && position < index )
-		{
-			previous = current;
-			current = current->next;
-			position++;
-		}
-		
-		Node<T> * newNode = new Node<T>( val );
+    template <typename T>
+    void LinkedList<T>::insert_at( int index, T val )
+    {
+        Node<T> *current = head, *previous = nullptr;
 
-		newNode->next = current;
+        auto position = 0;
 
-		if( position == 0 )
-			head = newNode;
+        while( current != nullptr && position < index )
+        {
+            previous = current;
+            current = current->next;
+            position++;
+        }
 
-		if( previous != nullptr )
-			previous->next = newNode;
-	}
+        Node<T> *newNode = new Node<T>( val );
+
+        newNode->next = current;
+
+        if( position == 0 )
+            head = newNode;
+
+        if( previous != nullptr )
+            previous->next = newNode;
+    }
+
+    template <typename T>
+    void LinkedList<T>::insert_at( int index, LinkedList<T> source )
+    {
+        if( source.head == nullptr )
+            return;
+
+        Node<T> *current = nullptr, *previous = nullptr;
+
+        auto position = 0;
+
+        while( current != nullptr && position < index )
+        {
+            previous = current;
+            current = current->next;
+            position++;
+        }
+
+        Node<T> *tmp = source.head, *newNode;
+
+        while( tmp != nullptr )
+        {
+            newNode = new Node<T>( tmp->data );
+            
+            newNode->next = current == nullptr ? head : current;
+
+            current->next = newNode;
+            current = current->next;
+
+            tmp = tmp->next;
+        }
+        
+        if( position == 0 )
+            head = newNode;
+
+        if( previous != nullptr )
+            previous->next = tmp;
+    }
 }

@@ -22,7 +22,7 @@ void ExecuteFromFile( string filePath )
 	std::getline( ifstream, size );
 	std::istringstream( size ) >> max;
 
-	UnionFind uf = UnionFind( max );
+	auto uf = UnionFind( max );
 
 	string command;
 	int l, r;
@@ -45,7 +45,7 @@ void ExecuteFromFile( string filePath )
 
 void ExecuteManually()
 {
-	UnionFind uf = UnionFind( 10 );
+	auto uf = UnionFind( 10 );
 
 	uf.join( 4, 3 );
 	uf.join( 3, 8 );

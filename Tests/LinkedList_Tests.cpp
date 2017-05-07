@@ -20,7 +20,7 @@ namespace LinkedList_Tests
 			int_list.push_front( 1 );
 			Assert::AreEqual<size_t>( int_list.length(), 1 );
 			Assert::AreEqual<int>( int_list.get_value_at( 0 ), 1 );
-
+			
 			int_list.push_front( 2 );
 			Assert::AreEqual<size_t>( int_list.length(), 2 );
 			Assert::AreEqual<int>( int_list.get_value_at( 0 ), 2 );
@@ -31,6 +31,38 @@ namespace LinkedList_Tests
 			Assert::AreEqual<int>( int_list.get_value_at( 0 ), 3 );
 			Assert::AreEqual<int>( int_list.get_value_at( 1 ), 2 );
 			Assert::AreEqual<int>( int_list.get_value_at( 2 ), 1 );
+		}
+
+		TEST_METHOD( LinkedList_push_back_head_equals_tail )
+		{
+			LinkedList<int> int_list;
+
+			Assert::AreEqual<size_t>( int_list.length(), 0 );
+
+			int_list.push_back( 1 );
+			
+			Assert::AreEqual<size_t>( int_list.length(), 1 );
+			
+			Assert::AreEqual<int>( int_list.first()->data, 1 );
+			Assert::AreEqual<int>( int_list.last()->data, 1 );
+
+			Assert::IsTrue( int_list.first() == int_list.last() );
+		}
+
+		TEST_METHOD( LinkedList_push_front_head_equals_tail )
+		{
+			LinkedList<int> int_list;
+
+			Assert::AreEqual<size_t>( int_list.length(), 0 );
+
+			int_list.push_front( 1 );
+			
+			Assert::AreEqual<size_t>( int_list.length(), 1 );
+			
+			Assert::AreEqual<int>( int_list.first()->data, 1 );
+			Assert::AreEqual<int>( int_list.last()->data, 1 );
+
+			Assert::IsTrue( int_list.first() == int_list.last() );
 		}
 
 		TEST_METHOD( LinkedList_push_back )
@@ -107,9 +139,9 @@ namespace LinkedList_Tests
 
 			// Insert at the head of the list (list before is "1 2 3", after is "1 2 3 0").
 			int_list.insert_at( 3, 0 );
-			BOOST_CHECK( int_list.length() == 4 );
-			BOOST_CHECK( int_list.get_value_at( 2 ) == 3 );
-			BOOST_CHECK( int_list.get_value_at( 3 ) == 0 );
+			Assert::AreEqual<size_t>( int_list.length(), 4 );
+			Assert::AreEqual<int>( int_list.get_value_at( 2 ), 3 );
+			Assert::AreEqual<int>( int_list.get_value_at( 3 ), 0 );
 		}
 
 		TEST_METHOD( LinkedList_push_front_another_list )
@@ -123,13 +155,15 @@ namespace LinkedList_Tests
 			source.push_back( 7 );
 			source.push_back( 8 );
 			source.push_back( 9 );
-			//dest.push_front( source );
 
-			BOOST_CHECK( dest.length() == 6 );
-			BOOST_CHECK( dest.get_value_at( 0 ) == 7 );
-			BOOST_CHECK( dest.get_value_at( 1 ) == 8 );
-			BOOST_CHECK( dest.get_value_at( 2 ) == 9 );
-			BOOST_CHECK( dest.get_value_at( 3 ) == 1 );
+			dest.push_front( source );
+
+			Assert::AreEqual<size_t>( dest.length(), 6 );
+
+			Assert::AreEqual<int>( dest.get_value_at( 0 ), 7 );
+			Assert::AreEqual<int>( dest.get_value_at( 1 ), 8 );
+			Assert::AreEqual<int>( dest.get_value_at( 2 ), 9 );
+			Assert::AreEqual<int>( dest.get_value_at( 3 ), 1 );
 		}
 
 		TEST_METHOD( LinkedList_push_back_another_list )
@@ -138,17 +172,22 @@ namespace LinkedList_Tests
 			dest.push_back( 1 );
 			dest.push_back( 2 );
 			dest.push_back( 3 );
+
 			LinkedList<int> source;
 			source.push_back( 7 );
 			source.push_back( 8 );
 			source.push_back( 9 );
-			//dest.push_back( source );
 
-			BOOST_CHECK( dest.length() == 6 );
-			BOOST_CHECK( dest.get_value_at( 2 ) == 3 );
-			BOOST_CHECK( dest.get_value_at( 3 ) == 7 );
-			BOOST_CHECK( dest.get_value_at( 4 ) == 8 );
-			BOOST_CHECK( dest.get_value_at( 5 ) == 9 );
+			dest.push_back( source );
+
+			Assert::AreEqual<size_t>( dest.length(), 6 );
+
+			Assert::AreEqual<int>( dest.get_value_at( 2 ), 3 );
+			Assert::AreEqual<int>( dest.get_value_at( 3 ), 7 );
+			Assert::AreEqual<int>( dest.get_value_at( 4 ), 8 );
+			Assert::AreEqual<int>( dest.get_value_at( 5 ), 9 );
+
+			Assert::AreEqual<int>( dest.last()->data, 9 );
 		}
 
 		TEST_METHOD( LinkedList_insert_another_list_at_head )
@@ -157,17 +196,19 @@ namespace LinkedList_Tests
 			dest.push_back( 1 );
 			dest.push_back( 2 );
 			dest.push_back( 3 );
+
 			LinkedList<int> source;
 			source.push_back( 7 );
 			source.push_back( 8 );
 			source.push_back( 9 );
-			//dest.insert_at( 0, source );
+			
+			dest.insert_at( 0, source );
 
-			BOOST_CHECK( dest.length() == 6 );
-			BOOST_CHECK( dest.get_value_at( 0 ) == 7 );
-			BOOST_CHECK( dest.get_value_at( 1 ) == 8 );
-			BOOST_CHECK( dest.get_value_at( 2 ) == 9 );
-			BOOST_CHECK( dest.get_value_at( 3 ) == 1 );
+			Assert::AreEqual<size_t>( dest.length(), 6 );
+			Assert::AreEqual<int>( dest.get_value_at( 0 ), 7 );
+			Assert::AreEqual<int>( dest.get_value_at( 1 ), 8 );
+			Assert::AreEqual<int>( dest.get_value_at( 2 ), 9 );
+			Assert::AreEqual<int>( dest.get_value_at( 3 ), 1 );
 		}
 
 		TEST_METHOD( LinkedList_insert_another_list_at_position )
@@ -176,18 +217,21 @@ namespace LinkedList_Tests
 			dest.push_back( 1 );
 			dest.push_back( 2 );
 			dest.push_back( 3 );
+
 			LinkedList<int> source;
 			source.push_back( 7 );
 			source.push_back( 8 );
 			source.push_back( 9 );
-			//dest.insert_at( 1, source );
 
-			BOOST_CHECK( dest.length() == 6 );
-			BOOST_CHECK( dest.get_value_at( 0 ) == 1 );
-			BOOST_CHECK( dest.get_value_at( 1 ) == 7 );
-			BOOST_CHECK( dest.get_value_at( 2 ) == 8 );
-			BOOST_CHECK( dest.get_value_at( 3 ) == 9 );
-			BOOST_CHECK( dest.get_value_at( 4 ) == 2 );
+			dest.insert_at( 1, source );
+
+			Assert::AreEqual<size_t>( dest.length(), 6 );
+
+			Assert::AreEqual<int>( dest.get_value_at( 0 ) ,1 );
+			Assert::AreEqual<int>( dest.get_value_at( 1 ), 7 );
+			Assert::AreEqual<int>( dest.get_value_at( 2 ), 8 );
+			Assert::AreEqual<int>( dest.get_value_at( 3 ), 9 );
+			Assert::AreEqual<int>( dest.get_value_at( 4 ), 2 );
 		}
 
 		TEST_METHOD( LinkedList_insert_another_list_at_tail )
@@ -202,13 +246,14 @@ namespace LinkedList_Tests
 			source.push_back( 7 );
 			source.push_back( 8 );
 			source.push_back( 9 );
-			//dest.insert_at( 3, source );
 
-			BOOST_CHECK( dest.length() == 6 );
-			BOOST_CHECK( dest.get_value_at( 2 ) == 3 );
-			BOOST_CHECK( dest.get_value_at( 3 ) == 7 );
-			BOOST_CHECK( dest.get_value_at( 4 ) == 8 );
-			BOOST_CHECK( dest.get_value_at( 5 ) == 9 );
+			dest.insert_at( 3, source );
+
+			Assert::AreEqual<size_t>( dest.length(), 6 );
+			Assert::AreEqual<int>( dest.get_value_at( 2 ), 3 );
+			Assert::AreEqual<int>( dest.get_value_at( 3 ), 7 );
+			Assert::AreEqual<int>( dest.get_value_at( 4 ), 8 );
+			Assert::AreEqual<int>( dest.get_value_at( 5 ), 9 );
 		}
 	};
 }

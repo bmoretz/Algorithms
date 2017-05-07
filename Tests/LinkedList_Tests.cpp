@@ -255,5 +255,25 @@ namespace LinkedList_Tests
 			Assert::AreEqual<int>( dest.get_value_at( 4 ), 8 );
 			Assert::AreEqual<int>( dest.get_value_at( 5 ), 9 );
 		}
+
+		TEST_METHOD( LinkedList_empty_push_back )
+		{
+			LinkedList<int> dest;
+			LinkedList<int> source;
+
+			dest.push_back( source );
+
+			Assert::AreEqual<size_t>( dest.length(), 0 );
+		}
+
+		TEST_METHOD( LinkedList_empty_push_front )
+		{
+			LinkedList<int> dest;
+			LinkedList<int> source;
+
+			dest.push_front( source );
+
+			Assert::AreEqual<size_t>( dest.length(), 0 );
+		}
 	};
 }

@@ -28,16 +28,16 @@ namespace DataStructures
         size_t length() const;
         string to_string() const;
 
-        void push_back( T t );
+        void push_back( T val );
         void push_back( const LinkedList<T> &source );
 
-        void push_front( T t );
+        void push_front( T val );
         void push_front( const LinkedList<T> &source );
 
         T get_value_at( int index );
 
         void insert_at( int index, T val );
-        void insert_at( int idnex, LinkedList<T> source );
+        void insert_at( int index, const LinkedList<T> &source );
 
         const Node<T>* first() const
         {
@@ -176,17 +176,19 @@ namespace DataStructures
         if( source.head == nullptr )
             return;
 
-        Node<T> *tmp = head, *iter = source.head, 
+        Node<T> *tmp = head, *iter = source.head,
             *newNode, *prevNode = nullptr;
 
         while( iter != nullptr )
         {
             newNode = new Node<T>( iter->data );
-               
+
             if( prevNode == nullptr )
             {
                 head = newNode;
-            } else {
+            }
+            else
+            {
                 prevNode->next = newNode;
             }
 
@@ -240,40 +242,46 @@ namespace DataStructures
     }
 
     template <typename T>
-    void LinkedList<T>::insert_at( int index, LinkedList<T> source )
+    void LinkedList<T>::insert_at( int index, const LinkedList<T> &source )
     {
         if( source.head == nullptr )
             return;
 
-        Node<T> *current = nullptr, *previous = nullptr;
+        Node<T>
+            *current = head,
+            *previous = nullptr;
 
-        auto position = 0;
+        auto position = 1;
 
-        while( current != nullptr && position < index )
+        while( position < index )
         {
             previous = current;
             current = current->next;
             position++;
         }
 
-        Node<T> *tmp = source.head, *newNode;
+        Node<T> *iter = source.head,
+            *srcHead = nullptr, *tmp = nullptr;
 
-        while( tmp != nullptr )
+        while( iter != nullptr )
         {
-            newNode = new Node<T>( tmp->data );
-            
-            newNode->next = current == nullptr ? head : current;
+            Node<T> *newNode = new Node<T>( iter->data );
 
-            current->next = newNode;
-            current = current->next;
+            if( srcHead == nullptr )
+                srcHead = newNode;
 
-            tmp = tmp->next;
+            if( tmp != nullptr )
+                tmp->next = newNode;
+
+            tmp = newNode;
+
+            iter = iter->next;
         }
-        
-        if( position == 0 )
-            head = newNode;
 
-        if( previous != nullptr )
-            previous->next = tmp;
+        tmp->next = current;
+        current = srcHead;
+        
+        if( index == 0 )
+            head = current;
     }
 }

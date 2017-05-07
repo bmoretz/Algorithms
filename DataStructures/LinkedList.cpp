@@ -4,7 +4,8 @@
 using namespace std;
 
 /*
-void LinkedList::insertBeg( int data )
+template<typename T>
+void LinkedList<T>::insertBeg( int data )
 {
 	Node *newNode = new Node( data );
 
@@ -19,7 +20,8 @@ void LinkedList::insertBeg( int data )
 	}
 }
 
-void LinkedList::insertEnd( int data )
+template<typename T>
+void LinkedList<T>::insertEnd( T data )
 {
 	Node *newNode = new Node( data );
 
@@ -37,7 +39,8 @@ void LinkedList::insertEnd( int data )
 	}
 }
 
-void LinkedList::insertAt( int data, int pos )
+template<typename T>
+void LinkedList<T>::insertAt( T data, int pos )
 {
 	assert( pos >= 0 );
 
@@ -63,14 +66,16 @@ void LinkedList::insertAt( int data, int pos )
 	}
 }
 
-void LinkedList::removeAt( int pos )
+template<typename T>
+void LinkedList<T>::removeAt( int pos )
 {
 	assert( head != nullptr );
 
 
 }
 
-string LinkedList::to_string()
+template<typename T>
+string LinkedList<T>::to_string()
 {
 	stringstream ss;
 
@@ -97,7 +102,8 @@ string LinkedList::to_string()
 	return ss.str();
 }
 
-size_t LinkedList::length() const
+template<typename T>
+size_t LinkedList<T>::length() const
 {
 	Node *current = head;
 

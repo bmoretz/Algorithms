@@ -5,13 +5,11 @@
 
 #pragma once
 
+#ifdef _WIN32
 #include "targetver.h"
+#endif
 
 #include <stdio.h>
-#include <tchar.h>
+#include "CppUnitTest.h"
 
-#include <iostream>
-#include <conio.h>
-
-#include <string>
-#include <array>
+#include <boost/test/unit_test.hpp>

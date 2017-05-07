@@ -34,7 +34,6 @@ void hanoi()
 
 void exec_list()
 {
-
 	LinkedList<int> list;
 
 	cout << list.to_string();

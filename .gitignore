@@ -2,6 +2,7 @@ x86
 x64
 Data
 ipch
-*.vssscc
 .vs/
+*.vssscc
+*.filters
 Algorithms.sdf

@@ -2,3 +2,6 @@ x86
 x64
 Data
 ipch
+*.vssscc
+.vs/
+Algorithms.sdf

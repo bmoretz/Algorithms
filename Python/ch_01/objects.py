@@ -281,6 +281,8 @@ while age <= 0:
 # 1.8, iterators and generators
 ##################
 
+# Iterator
+
 data = [1, 2, 4, 8]
 i = iter(data)
 
@@ -290,3 +292,159 @@ while True:
         print('element')
     except StopIteration:
         break
+
+# Generator
+
+# loop based
+def factors_loop(n):
+    results = []
+    for k in range(1, n+1):
+        if n % k == 0:
+            results.append(k)
+    return results
+
+factors_loop(100)
+
+def factors_gen(n):
+    for k in range(1, n+1):
+        if n % k == 0:
+            yield k
+
+i = factors_gen(100) # returns an iterable
+
+list(i) # force evaluation
+
+# v2
+
+def factors(n):
+    k = 1
+    while k * k < n:
+        if n % k == 0:
+            yield k
+            yield n // k
+        k += 1
+    if k * k == n:
+        yield k
+
+i = factors(100)
+
+s = list(i)
+s.sort()
+s
+
+def fibonacci(max = 1000):
+    a, b, future = 0, 1, 0
+
+    while future <= max:
+        yield a
+        future = a + b
+        a = b
+        b = future
+
+f = fibonacci()
+
+list(f)
+
+##################
+# 1.9, additional conveniences
+##################
+
+# ternary operator
+
+x, n = -1, 1
+
+def getParam(n):
+    if n >= 0:
+        param = n
+    else:
+        param = -n
+    return param
+
+getParam(n)
+
+param = n if n >= 0 else -n
+
+assert getParam(n) == param
+
+# as function arg
+getParam( x if x >= 0 else -n )
+
+
+# traditional syntax
+
+n = 100
+squares = []
+for k in range(1, n+1):
+    squares.append(k*k)
+
+squares
+
+# comprehension syntax
+
+squares = [ k*k for k in range(1, n+1)]
+squares
+
+factors = [ k for k in range(1, n+1) if n % k == 0]
+factors
+
+[ k for k in range(1, n+1) if n % k == 0] # list comprehension
+{ k for k in range(1, n+1) if n % k == 0} # set comprehension
+( k for k in range(1, n+1) if n % k == 0) # generator comprehension
+{ k : k*k for k in range(1, n+1) if n % k == 0 } # dictionary comprehension
+
+# useful generator
+
+total = sum( k * k for k in range(1, n +1))
+total
+
+# explicit tuple (automatic packing)
+data = 2, 4, 6, 8
+data
+
+# auto unpacking
+a, b, c, d = range(7, 11)
+
+(a,b,c,d)
+
+quotient, remainder = divmod(d,a)
+
+(quotient, remainder)
+
+for x, y in [(7,2), (5,8), (6,4)]:
+    print("{0} - {1}".format(x,y))
+
+def fibonacci(max = 1000):
+    a, b = 0, 1
+    while b <= max:
+        yield b
+        a, b = b, a + b 
+
+i = fibonacci()
+
+list(i)
+
+##################
+# 1.10, first-class objects
+##################
+
+scream = print
+scream('Hello')
+
+##################
+# 1.11, modules
+##################
+
+from math import pi, sqrt
+
+sqrt(pi)
+
+import math
+
+math.sqrt(math.pi)
+
+from utility import count
+
+grades = ['A', 'A', 'B', 'C+']
+count(grades, 'A')
+
+

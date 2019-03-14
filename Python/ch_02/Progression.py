@@ -42,7 +42,4 @@ def main():
     for n in range(0,10):
         print('n: {0} value: {1}'.format(n, p.__next__()))
 
-    # next 10
-    p.print_progression(10)
-    
 main()

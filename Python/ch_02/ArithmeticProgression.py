@@ -1,6 +1,6 @@
 import Progression
 
-class ArithmeticProgresssion(Progression):
+class ArithmeticProgression(Progression):
     """Iterator producing an arithmetic progression."""
 
     def __init__(self, increment=1, start=0):
@@ -19,9 +19,12 @@ class ArithmeticProgresssion(Progression):
 
 def main():
 
-    ap = ArithmeticProgresssion(4)
+    ap = ArithmeticProgression(4)
 
     for n in range(0,10):
         print('n: {0} value: {1}'.format(n, ap.__next__()))
 
-main()
+    # next 10
+    p.print_progression(10)
+    
+main

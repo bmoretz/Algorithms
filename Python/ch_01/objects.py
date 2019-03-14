@@ -220,7 +220,7 @@ y = float(pieces[1])
 y
 
 age = int(input('Enter your age in years: '))
-max_heart_rate = 206.9 - (0.67 * age) # as per Med Sci Sports Exerc.
+max_heart_rate = 206.9 - (0.67 * age) # as per Med Sci Sports.
 target = 0.65 * max_heart_rate
 print('Your target fat-burning heart rate is', target)
 
@@ -413,13 +413,13 @@ quotient, remainder = divmod(d,a)
 for x, y in [(7,2), (5,8), (6,4)]:
     print("{0} - {1}".format(x,y))
 
-def fibonacci(max = 1000):
+def fibonacci_i(max = 1000):
     a, b = 0, 1
     while b <= max:
         yield b
         a, b = b, a + b 
 
-i = fibonacci()
+i = fibonacci_i()
 
 list(i)
 

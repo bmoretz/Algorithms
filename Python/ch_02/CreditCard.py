@@ -8,7 +8,7 @@ class CreditCard:
 
         customer    the name of the customer (e.g. 'John Bowman')
         bank        the name of the bank  (e.g., 'California Savings')
-        account        the account identifier (e.g., '5391 0375 9387 5309')
+        account     the account identifier (e.g., '5391 0375 9387 5309')
         limit       credit limit (measured in dollars)
         """
 
@@ -54,8 +54,7 @@ class CreditCard:
         """Process customer payment that reduces balance."""
         self._balance -= amount
 
-if __name__ == '__main__':
-
+def main():
     wallet = []
 
     wallet.append(CreditCard('John Doe', 'California Savings', 
@@ -67,6 +66,7 @@ if __name__ == '__main__':
     wallet.append(CreditCard('John Doe', 'California Finance', 
                             '5391 0375 9387 5309', 5000))
 
+    print('Credit Cards = ', len(wallet))
 
     for val in range(1, 17):
         wallet[0].charge(val)
@@ -83,4 +83,5 @@ if __name__ == '__main__':
         while wallet[c].get_balance() > 100:
             wallet[c].make_payment(100)
             print('New Balance = ', wallet[c].get_balance())
-        print()
+
+main()

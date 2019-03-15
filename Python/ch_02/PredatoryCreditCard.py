@@ -2,6 +2,8 @@ import CreditCard
 
 class PredatoryCreditCard(CreditCard):
 
+    OVERLIMIT_FEE = 5
+
     def __init__(self, customer, bank, account, limit, apr):
         """Create a new predatory credit card instance.
 
@@ -27,7 +29,7 @@ class PredatoryCreditCard(CreditCard):
         success = super().charge(price)
 
         if not success:
-            self._balance += 5
+            self._balance += PredatoryCreditCard.OVERLIMIT_FEE
         return success
 
     def process_month(self):

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4843793b-21ab-46f6-8fe4-bc22c6f9cc7f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile />
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId>Global|PythonCore|3.7</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="results.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ch_01\creativity\c_1.13.py" />
+    <Compile Include="ch_01\creativity\c_1.14.py" />
+    <Compile Include="ch_01\creativity\c_1.15.py" />
+    <Compile Include="ch_01\creativity\c_1.16.py" />
+    <Compile Include="ch_01\creativity\c_1.18.py" />
+    <Compile Include="ch_01\creativity\c_1.19.py" />
+    <Compile Include="ch_01\creativity\c_1.7.py" />
+    <Compile Include="ch_01\intro.py" />
+    <Compile Include="ch_01\objects.py" />
+    <Compile Include="ch_01\reinforcement\r_1.1.py" />
+    <Compile Include="ch_01\reinforcement\r_1.10.py" />
+    <Compile Include="ch_01\reinforcement\r_1.11.py" />
+    <Compile Include="ch_01\reinforcement\r_1.12.py" />
+    <Compile Include="ch_01\reinforcement\r_1.2.py" />
+    <Compile Include="ch_01\reinforcement\r_1.3.py" />
+    <Compile Include="ch_01\reinforcement\r_1.4.py" />
+    <Compile Include="ch_01\reinforcement\r_1.5.py" />
+    <Compile Include="ch_01\reinforcement\r_1.6.py" />
+    <Compile Include="ch_01\reinforcement\r_1.7.py" />
+    <Compile Include="ch_01\reinforcement\r_1.8.py" />
+    <Compile Include="ch_01\reinforcement\r_1.9.py" />
+    <Compile Include="ch_01\utility.py" />
+    <Compile Include="ch_02\ABC.py" />
+    <Compile Include="ch_02\ArithmeticProgression.py" />
+    <Compile Include="ch_02\creativity\c_25.py" />
+    <Compile Include="ch_02\creativity\c_31.py" />
+    <Compile Include="ch_02\creativity\c_32.py" />
+    <Compile Include="ch_02\CreditCard.py" />
+    <Compile Include="ch_02\docstring.py" />
+    <Compile Include="ch_02\FibonacciProgression.py" />
+    <Compile Include="ch_02\GeometricProgression.py" />
+    <Compile Include="ch_02\iterators.py" />
+    <Compile Include="ch_02\PredatoryCreditCard.py" />
+    <Compile Include="ch_02\Progression\Progression_tests.py" />
+    <Compile Include="ch_02\Progression\__init__.py" />
+    <Compile Include="ch_02\range.py" />
+    <Compile Include="ch_02\reinforcement\r_2.4.py" />
+    <Compile Include="ch_02\reinforcement\r_2.5-8.py" />
+    <Compile Include="ch_02\reinforcement\r_2.9-15.py" />
+    <Compile Include="ch_02\reinforcement\r_22.py" />
+    <Compile Include="ch_02\Vector.py" />
+    <Compile Include="ch_03\disjoin_sets.py" />
+    <Compile Include="ch_03\find.py" />
+    <Compile Include="ch_03\prefix_average.py" />
+    <Compile Include="ch_03\profile.py" />
+    <Compile Include="ch_03\reinforcement\r_3.1.py" />
+    <Compile Include="ch_03\unique.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ch_01" />
+    <Folder Include="ch_01\creativity" />
+    <Folder Include="ch_01\reinforcement" />
+    <Folder Include="ch_02" />
+    <Folder Include="ch_02\creativity" />
+    <Folder Include="ch_02\Progression" />
+    <Folder Include="ch_02\reinforcement" />
+    <Folder Include="ch_03" />
+    <Folder Include="ch_03\reinforcement" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>

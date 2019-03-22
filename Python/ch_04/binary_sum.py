@@ -8,4 +8,7 @@ def binary_sum(S, start, stop):
         mid = ( start + stop ) // 2
         return binary_sum(S, start, mid) + binary_sum(S, mid, stop)
 
+k = 11
 
+data = [k for k in range(0, k)]
+binary_sum(data, 0, k)

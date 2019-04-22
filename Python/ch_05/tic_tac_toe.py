@@ -22,6 +22,8 @@ class TicTacToe:
         else:
             self._player = 'X'
 
+        print(self)
+
     def _is_win(self, mark):
         """Check whether the board configuration is a win for the given player."""
         board = self._board
@@ -49,14 +51,12 @@ class TicTacToe:
 if __name__ == '__main__':
     game = TicTacToe()
 
-    print(game)
-    
     # X moves           # O moves:
     game.mark(1, 1);    game.mark(0, 2)
     game.mark(2, 2);    game.mark(0, 0)
     game.mark(0, 1);    game.mark(2, 1)
     game.mark(1, 2);    game.mark(1, 0)
-    game.mark(2, 1)
+    game.mark(2, 0)
 
     print(game)
 

@@ -1,6 +1,6 @@
 def sqrt_bisec_d(x, epsilon = 0.01):
     numGuesses = 0
-    low = 0
+    low = min(-1, x)
     high = max(1.0, x)
     ans = (high + low) / 2.0
     delta = float('inf')
@@ -31,5 +31,5 @@ def sqrt_bisect(z, tol=1E-12):
 
 x = 25
 
+print('sqrt num', x, 'bisec_d result:', sqrt_bisec_d(x))
 print('sqrt num', x, 'bisec results', sqrt_bisect(x))
-print('sqrt num', x, 'bisec_d result:', sqrt_bisect_d(x))

@@ -16,25 +16,27 @@ namespace ArrayTests
 	protected:
 
 		void SetUp() override
-		{
-		}
+		{}
 
 		void TearDown() override
-		{
-		}
+		{}
 	};
 
-	TEST_F(ArrayTests, initialize)
+	TEST_F( ArrayTests, initialize )
 	{
-		Array<int> arr(10);
+		Array<int> arr( 10 );
 
-		EXPECT_EQ(arr.size(), 10);
+		EXPECT_EQ( arr.size(), 10 );
 	}
 
-	TEST_F(ArrayTests, initialize_inline)
+	TEST_F( ArrayTests, initialize_inline )
 	{
-		Array<int> arr = { 0, 1, 2, 3, 4, 5 };
+		Array<int> arr = { 0, 1, 2, 3, 4 };
 
-		EXPECT_EQ(arr.get_value_at(0), 10);
+		EXPECT_EQ( arr.get_value_at( 0 ), 0 );
+		EXPECT_EQ( arr.get_value_at( 1 ), 1 );
+		EXPECT_EQ( arr.get_value_at( 2 ), 2 );
+		EXPECT_EQ( arr.get_value_at( 3 ), 3 );
+		EXPECT_EQ( arr.get_value_at( 4 ), 4 );
 	}
 }

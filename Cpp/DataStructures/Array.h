@@ -49,16 +49,7 @@ namespace DataStructures
 	inline Array<T>::Array( const std::initializer_list<T>& init_list ) :
 		Array<T>( init_list.size() )
 	{
-		T* tmp = new T[ m_size ];
-
-		std::initializer_list<T>::iterator it;
-		size_t position = 0;
-		for( it = init_list.begin(); it != init_list.end(); ++it )
-		{
-			tmp[ position++ ] = *it;
-		}
-
-		std::swap( tmp, m_data );
+		std::copy( init_list.begin(), init_list.end(), m_data );
 	}
 
 	template <typename T>

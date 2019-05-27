@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "Recursion1.h"
 
 namespace Recursion1

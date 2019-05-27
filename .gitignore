@@ -1,2 +1,7 @@
 
 Python/env/
+*.tlog
+Cpp/Debug/
+Cpp/Algorithms.UI/Debug/
+Cpp/DataStructures/Debug/
+Cpp/Recursion/Debug/

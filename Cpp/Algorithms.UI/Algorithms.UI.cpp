@@ -3,33 +3,17 @@
 
 #include "pch.h"
 #include "LinkedList.h"
-#include "Hanoi.h"
 
 using namespace std;
 
 void exec_list();
-void hanoi();
+void array_test();
 
 int main()
 {
-	hanoi();
+	array_test();
 
     return 0;
-}
-
-void hanoi()
-{
-	auto disks = 4;
-
-	cout << "Enter number of disks: ";
-	cin >> disks;
-
-	Hanoi::hanoi h( disks );
-
-	h.solve();
-
-	cout << endl;
-
 }
 
 void exec_list()
@@ -49,4 +33,13 @@ void exec_list()
 
 	//list.insertAt( -1, 5 );
 	cout << list.to_string();
+}
+
+void array_test()
+{
+	int i, salary[15];
+	for (i = 0; i < 15; i++)
+	{
+		cin >> salary[i]; // Input to the array
+	}
 }

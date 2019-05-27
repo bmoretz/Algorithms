@@ -4,4 +4,6 @@ Python/env/
 Cpp/Debug/
 Cpp/Algorithms.UI/Debug/
 Cpp/DataStructures/Debug/
-Cpp/Recursion/Debug/
+Recursion/Recursion/Debug/
+Recursion/Recursion/x64/
+Recursion/Tests/x64/

@@ -165,9 +165,6 @@
     <ProjectReference Include="..\DataStructures\DataStructures.vcxproj">
       <Project>{686470ee-d0b6-44bd-9ccd-b5161d68ac6e}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Recursion\Recursion.vcxproj">
-      <Project>{15b1a3ef-e289-4c1f-a048-54f861dbba30}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\UnionFind\UnionFind.vcxproj">
       <Project>{e1317fc0-c468-4e21-a661-253366a43065}</Project>
     </ProjectReference>

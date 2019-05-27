@@ -7,3 +7,5 @@ Cpp/DataStructures/Debug/
 Recursion/Recursion/Debug/
 Recursion/Recursion/x64/
 Recursion/Tests/x64/
+*/.vs/*
+*/packages/

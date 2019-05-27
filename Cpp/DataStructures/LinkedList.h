@@ -36,10 +36,10 @@ namespace DataStructures
         void push_front( T val );
         void push_front( const LinkedList<T> &source );
 
-        T get_value_at( int index );
+        T get_value_at( size_t index );
 
-        void insert_at( int index, T val );
-        void insert_at( int index, const LinkedList<T> &source );
+        void insert_at( size_t index, T val );
+        void insert_at( size_t index, const LinkedList<T> &source );
 
         const Node<T>* first() const
         {
@@ -61,12 +61,12 @@ namespace DataStructures
     };
 
     template <typename T>
-    LinkedList<T>::LinkedList()
+    inline LinkedList<T>::LinkedList()
     {
     }
 
     template <typename T>
-    LinkedList<T>::~LinkedList()
+    inline LinkedList<T>::~LinkedList()
     {
         while( head != nullptr )
         {
@@ -202,7 +202,7 @@ namespace DataStructures
     }
 
     template <typename T>
-    T LinkedList<T>::get_value_at( int index )
+    T LinkedList<T>::get_value_at( size_t index )
     {
         Node<T> *current = head;
 
@@ -219,7 +219,7 @@ namespace DataStructures
     }
 
     template <typename T>
-    void LinkedList<T>::insert_at( int index, T val )
+    void LinkedList<T>::insert_at( size_t index, T val )
     {
         Node<T> *current = head, *previous = nullptr;
 
@@ -244,7 +244,7 @@ namespace DataStructures
     }
 
     template <typename T>
-    void LinkedList<T>::insert_at( int index, const LinkedList<T> &source )
+    void LinkedList<T>::insert_at( size_t index, const LinkedList<T> &source )
     {
         if( source.head == nullptr )
             return;

@@ -16,6 +16,7 @@ namespace DataStructures
 
 		Array( size_t size );
 		Array( size_t size, T[] );
+		Array( const Array<T>& copy );
 		Array( const std::initializer_list<T>& init_list );
 
 		~Array();
@@ -27,22 +28,33 @@ namespace DataStructures
 		T& operator[]( size_t index );
 		
 		size_t size();
-
-		T get_value_at( size_t index );
 	};
 
 	template <typename T>
 	inline Array<T>::Array( size_t size )
 	{
 		m_size = size;;
-		m_data = new T[ size ];
+		m_data = new T[ size ]();
 	}
 
 	template<typename T>
 	inline Array<T>::Array( size_t size, T values[] )
 	{
 		m_size = size;
-		m_data = values;
+
+		T* tmp = new T[ m_size ];
+		for( size_t index = 0; index < m_size; index++ )
+		{
+			tmp[ index ] = values[ index ];
+		}
+
+		std::swap( tmp, m_data );
+	}
+
+	template<typename T>
+	inline Array<T>::Array( const Array<T>& copy )
+		: Array<T>( copy.m_size, copy.m_data )
+	{
 	}
 
 	template<typename T>
@@ -90,23 +102,13 @@ namespace DataStructures
 	Array<T>& Array<T>::operator=( const std::initializer_list<T> &init_list )
 	{
 		m_size = init_list.size();
-		T* tmp = new T[ m_size ];
-		for( size_t i = 0; i < m_size; i++ )
-		{
-			tmp[ i ] = initializer_list[ i ];
-		}
-
-		std::swap( tmp, m_data );
-
-		delete tmp;
-
-		return *this;
+		std::copy( init_list.begin(), init_list.end(), m_data );
 	}
 
 	template<typename T>
 	T& Array<T>::operator[]( size_t index )
 	{
-		if( index < 0 || index > size )
+		if( index < 0 || index > m_size )
 			throw std::exception( "Invalid index position" );
 
 		return m_data[ index ];
@@ -116,11 +118,5 @@ namespace DataStructures
 	inline size_t Array<T>::size()
 	{
 		return m_size;
-	}
-
-	template<typename T>
-	inline T Array<T>::get_value_at( size_t index )
-	{
-		return m_data[ index ];
 	}
 }

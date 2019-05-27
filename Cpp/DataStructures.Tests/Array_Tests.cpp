@@ -27,16 +27,58 @@ namespace ArrayTests
 		Array<int> arr( 10 );
 
 		EXPECT_EQ( arr.size(), 10 );
+
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 0 );
+		EXPECT_EQ( arr[ 2 ], 0 );
+		EXPECT_EQ( arr[ 3 ], 0 );
+		EXPECT_EQ( arr[ 4 ], 0 );
+		EXPECT_EQ( arr[ 5 ], 0 );
+		EXPECT_EQ( arr[ 6 ], 0 );
+		EXPECT_EQ( arr[ 7 ], 0 );
+		EXPECT_EQ( arr[ 8 ], 0 );
+		EXPECT_EQ( arr[ 9 ], 0 );
 	}
 
-	TEST_F( ArrayTests, initialize_inline )
+	TEST_F( ArrayTests, initialize_init_list )
 	{
 		Array<int> arr = { 0, 1, 2, 3, 4 };
 
-		EXPECT_EQ( arr.get_value_at( 0 ), 0 );
-		EXPECT_EQ( arr.get_value_at( 1 ), 1 );
-		EXPECT_EQ( arr.get_value_at( 2 ), 2 );
-		EXPECT_EQ( arr.get_value_at( 3 ), 3 );
-		EXPECT_EQ( arr.get_value_at( 4 ), 4 );
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 1 );
+		EXPECT_EQ( arr[ 2 ], 2 );
+		EXPECT_EQ( arr[ 3 ], 3 );
+		EXPECT_EQ( arr[ 4 ], 4 );
+	}
+
+	TEST_F( ArrayTests, initialize_size_values )
+	{
+		int values[ 5 ] = { 0, 1, 2, 3, 4 };
+		Array<int> arr( 5, values );
+
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 1 );
+		EXPECT_EQ( arr[ 2 ], 2 );
+		EXPECT_EQ( arr[ 3 ], 3 );
+		EXPECT_EQ( arr[ 4 ], 4 );
+	}
+
+	TEST_F( ArrayTests, copy_one )
+	{
+		Array<int> arr = { 0, 1, 2, 3, 4 };
+
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 1 );
+		EXPECT_EQ( arr[ 2 ], 2 );
+		EXPECT_EQ( arr[ 3 ], 3 );
+		EXPECT_EQ( arr[ 4 ], 4 );
+
+		Array<int> arr2(arr);
+
+		EXPECT_EQ( arr2[ 0 ], 0 );
+		EXPECT_EQ( arr2[ 1 ], 1 );
+		EXPECT_EQ( arr2[ 2 ], 2 );
+		EXPECT_EQ( arr2[ 3 ], 3 );
+		EXPECT_EQ( arr2[ 4 ], 4 );
 	}
 }

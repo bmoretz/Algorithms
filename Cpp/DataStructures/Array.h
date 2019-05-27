@@ -33,7 +33,7 @@ namespace DataStructures
 	template <typename T>
 	inline Array<T>::Array( size_t size )
 	{
-		m_size = size;;
+		m_size = size;
 		m_data = new T[ size ]();
 	}
 
@@ -84,14 +84,14 @@ namespace DataStructures
 
 		// Do all operations that can generate an exception before copy.
 		// DO NOT modify the object at this stage.
-		T* tmp = new[ copy.size() ];
-		for( size_t i = 0; i < size; i++ )
+		T* tmp = new T[ copy.m_size ]();
+		for( int index = 0; index < copy.m_size; index++ )
 		{
-			tmp[ i ] = copy.m_data[ i ];
+			tmp[ index ] = copy.m_data[ index ];
 		}
 
 		std::swap( tmp, m_data );
-		m_size = copy.size;
+		m_size = copy.m_size;
 
 		delete tmp;
 

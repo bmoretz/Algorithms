@@ -127,4 +127,43 @@ namespace ArrayTests
 		EXPECT_EQ( arr[ 3 ], 8 );
 		EXPECT_EQ( arr[ 4 ], 9 );
 	}
+
+	TEST_F( ArrayTests, assignment_init_list )
+	{
+		Array<int> arr = { 0, 1, 2, 3, 4 };
+
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 1 );
+		EXPECT_EQ( arr[ 2 ], 2 );
+		EXPECT_EQ( arr[ 3 ], 3 );
+		EXPECT_EQ( arr[ 4 ], 4 );
+
+		arr = { 5, 6, 7, 8, 9 };
+
+		EXPECT_EQ( arr[ 0 ], 5 );
+		EXPECT_EQ( arr[ 1 ], 6 );
+		EXPECT_EQ( arr[ 2 ], 7 );
+		EXPECT_EQ( arr[ 3 ], 8 );
+		EXPECT_EQ( arr[ 4 ], 9 );
+	}
+
+	TEST_F( ArrayTests, assignment_op )
+	{
+		int values[ 5 ] = { 5, 6, 7, 8, 9 };
+		Array<int> arr = { 0, 1, 2, 3, 4 };
+
+		EXPECT_EQ( arr[ 0 ], 0 );
+		EXPECT_EQ( arr[ 1 ], 1 );
+		EXPECT_EQ( arr[ 2 ], 2 );
+		EXPECT_EQ( arr[ 3 ], 3 );
+		EXPECT_EQ( arr[ 4 ], 4 );
+
+		arr = values;
+
+		EXPECT_EQ( arr[ 0 ], 5 );
+		EXPECT_EQ( arr[ 1 ], 6 );
+		EXPECT_EQ( arr[ 2 ], 7 );
+		EXPECT_EQ( arr[ 3 ], 8 );
+		EXPECT_EQ( arr[ 4 ], 9 );
+	}
 }

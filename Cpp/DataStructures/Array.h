@@ -41,14 +41,12 @@ namespace DataStructures
 	inline Array<T>::Array( size_t size, T values[] )
 	{
 		m_size = size;
+		m_data = new T[ size ]();
 
-		T* tmp = new T[ m_size ];
 		for( size_t index = 0; index < m_size; index++ )
 		{
-			tmp[ index ] = values[ index ];
+			m_data[ index ] = values[ index ];
 		}
-
-		std::swap( tmp, m_data );
 	}
 
 	template<typename T>
@@ -73,6 +71,19 @@ namespace DataStructures
 	template<typename T>
 	Array<T>& Array<T>::operator=( T values[] )
 	{
+		size_t len = ( sizeof( values ) / sizeof( *values ) );
+
+		if( len > m_size )
+			throw std::exception( "Not enough memory allocated to perform operation." );
+
+		m_size = len;
+		m_data = new T[ m_size ]();
+
+		for( size_t index = 0; index < len; index++ )
+		{
+			m_data[ index ] = values[ index ];
+		}
+
 		return *this;
 	}
 
@@ -85,15 +96,16 @@ namespace DataStructures
 		// Do all operations that can generate an exception before copy.
 		// DO NOT modify the object at this stage.
 		T* tmp = new T[ copy.m_size ]();
-		for( int index = 0; index < copy.m_size; index++ )
+		for( size_t index = 0; index < copy.m_size; index++ )
 		{
 			tmp[ index ] = copy.m_data[ index ];
 		}
 
+		// Update instance.
 		std::swap( tmp, m_data );
 		m_size = copy.m_size;
 
-		delete tmp;
+		delete [] tmp;
 
 		return *this;
 	}
@@ -103,6 +115,8 @@ namespace DataStructures
 	{
 		m_size = init_list.size();
 		std::copy( init_list.begin(), init_list.end(), m_data );
+
+		return *this;
 	}
 
 	template<typename T>

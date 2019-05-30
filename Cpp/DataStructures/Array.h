@@ -21,13 +21,17 @@ namespace DataStructures
 
 		~Array();
 
-		Array<T>& operator=( T[] );
-		Array<T>& operator=( const Array<T>& copy );
+		Array<T>& operator=( const Array<T>& );
 		Array<T>& operator=( const std::initializer_list<T> &init_list );
 
 		T& operator[]( size_t index );
 		
+		T* begin();
+		T* end();
+
 		size_t size();
+
+		string to_string();
 	};
 
 	template <typename T>
@@ -69,25 +73,6 @@ namespace DataStructures
 	}
 
 	template<typename T>
-	Array<T>& Array<T>::operator=( T values[] )
-	{
-		size_t len = ( sizeof( values ) / sizeof( *values ) );
-
-		if( len > m_size )
-			throw std::exception( "Not enough memory allocated to perform operation." );
-
-		m_size = len;
-		m_data = new T[ m_size ]();
-
-		for( size_t index = 0; index < len; index++ )
-		{
-			m_data[ index ] = values[ index ];
-		}
-
-		return *this;
-	}
-
-	template<typename T>
 	Array<T>& Array<T>::operator=( const Array<T>& copy )
 	{
 		if( this == &copy )
@@ -95,7 +80,7 @@ namespace DataStructures
 
 		// Do all operations that can generate an exception before copy.
 		// DO NOT modify the object at this stage.
-		T* tmp = new T[ copy.m_size ]();
+		T * tmp = new T[ copy.m_size ]();
 		for( size_t index = 0; index < copy.m_size; index++ )
 		{
 			tmp[ index ] = copy.m_data[ index ];
@@ -105,7 +90,7 @@ namespace DataStructures
 		std::swap( tmp, m_data );
 		m_size = copy.m_size;
 
-		delete [] tmp;
+		delete[] tmp;
 
 		return *this;
 	}
@@ -129,8 +114,42 @@ namespace DataStructures
 	}
 
 	template<typename T>
+	inline T* Array<T>::begin()
+	{
+		return &m_data[0];
+	}
+
+	template<typename T>
+	inline T* Array<T>::end()
+	{
+		return &m_data[m_size];
+	}
+
+	template<typename T>
 	inline size_t Array<T>::size()
 	{
 		return m_size;
+	}
+	template<typename T>
+	inline string Array<T>::to_string()
+	{
+		stringstream ss;
+
+		if( m_size == 0 )
+		{
+			ss << "Array contains no elements.";
+		}
+		else
+		{
+			for( size_t index = 0; index < m_size; index++ )
+			{
+				ss << "{i:" << index << ","
+					<< "v:" << m_data[ index ] << "}";
+			}
+		}
+
+		ss << endl;
+
+		return ss.str();
 	}
 }

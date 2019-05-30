@@ -143,6 +143,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Search.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>

@@ -185,4 +185,24 @@ namespace ArrayTests
 
 		EXPECT_EQ( found, false );
 	}
+
+	TEST_F( ArrayTests, equal )
+	{
+		Array<int> arr1 = { 0, 1, 2, 3, 4}, arr2 = { 0, 1, 2, 3, 4 };
+
+		EXPECT_TRUE( arr1 == arr2 );
+	}
+
+	TEST_F( ArrayTests, merge_into )
+	{
+		Array<int> arr1 = { 0, 1, 2, 3, 4 }, arr2 = { 5, 6, 7, 8, 9 };
+
+		arr1.merge( arr2 );
+
+		Array<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		auto test = arr1.to_string();
+
+		EXPECT_TRUE( arr1 == expected );
+	}
 }

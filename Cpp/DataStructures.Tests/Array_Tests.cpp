@@ -201,7 +201,16 @@ namespace ArrayTests
 
 		Array<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-		auto test = arr1.to_string();
+		EXPECT_TRUE( arr1 == expected );
+	}
+
+	TEST_F( ArrayTests, merge_into_2 )
+	{
+		Array<int> arr1 = { 0, 2, 4, 6, 8 }, arr2 = { 1, 3, 5, 7, 9 };
+
+		arr1.merge( arr2 );
+
+		Array<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 		EXPECT_TRUE( arr1 == expected );
 	}

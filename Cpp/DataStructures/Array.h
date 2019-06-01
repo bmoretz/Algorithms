@@ -156,7 +156,7 @@ namespace DataStructures
 
 		for( size_t index = 0; index < new_size; index++ )
 		{
-			tmp[ index ] = m_data[ k ] < other.m_data[ j ] ?
+			tmp[ index ] = ( k < m_size && j < other.m_size ) && ( m_data[ k ] < other.m_data[ j ] ) ?
 				m_data[ k++ ] : other.m_data[ j++ ];
 		}
 

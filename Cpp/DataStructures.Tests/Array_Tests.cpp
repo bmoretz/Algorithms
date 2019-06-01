@@ -232,9 +232,41 @@ namespace ArrayTests
 
 		arr.sort();
 
+		Array<int> expected = { 6, 10, 12, 32, 47, 55, 61, 78, 84, 99 };
+
+		EXPECT_TRUE( arr == expected );
+	}
+
+	TEST_F( ArrayTests, insert_at )
+	{
+		Array<int> arr( 10 );
+
+		arr.insert_at( 5, 10 );
+
+		Array<int> expected = { 0, 0, 0, 0, 0, 10, 0, 0, 0, 0 };
+
+		EXPECT_TRUE( arr == expected );
+	}
+
+	TEST_F( ArrayTests, element_at )
+	{
+		Array<int> arr( 10 );
+		int expected = 10, pos = 5;
+
+		arr.insert_at( pos, expected );
+
+		EXPECT_EQ( arr.element_at( pos ), expected );
+	}
+
+	TEST_F( ArrayTests, reverse )
+	{
+		Array<int> arr = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		arr.reverse();
+
 		auto test = arr.to_string();
 
-		Array<int> expected = { 6, 10, 12, 32, 47, 55, 61, 78, 84, 99 };
+		Array<int> expected = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 
 		EXPECT_TRUE( arr == expected );
 	}

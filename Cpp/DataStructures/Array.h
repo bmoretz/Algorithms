@@ -33,9 +33,13 @@ namespace DataStructures
 		T* begin();
 		T* end();
 
+		void insert_at( size_t, T );
+		T element_at( size_t );
+
 		void merge( const Array<T>& );
 		void sort();
 		void swap( size_t, size_t );
+		void reverse();
 
 		size_t size();
 		string to_string();
@@ -150,6 +154,21 @@ namespace DataStructures
 	}
 
 	template<typename T>
+	inline void Array<T>::insert_at( size_t index, T value )
+	{
+		if( index < 0 || index > m_size )
+			throw std::exception( "Invalid index position" );
+
+		m_data[ index ] = value;
+	}
+
+	template<typename T>
+	inline T Array<T>::element_at( size_t index )
+	{
+		return m_data[ index ];
+	}
+
+	template<typename T>
 	void Array<T>::merge( const Array<T> & other )
 	{
 		size_t new_size = m_size + other.m_size;
@@ -182,6 +201,15 @@ namespace DataStructures
 		T tmp = m_data[ l ];
 		m_data[ l ] = m_data[ r ];
 		m_data[ r ] = tmp;
+	}
+
+	template<typename T>
+	inline void Array<T>::reverse()
+	{
+		for( size_t index = 0; index < static_cast<size_t>( m_size / 2 ); index++ )
+		{
+			swap( index, m_size - index - 1 );
+		}
 	}
 
 	template<typename T>

@@ -214,4 +214,28 @@ namespace ArrayTests
 
 		EXPECT_TRUE( arr1 == expected );
 	}
+
+	TEST_F( ArrayTests, swap )
+	{
+		Array<int> arr = { 78, 12, 47, 55, 61, 6, 99, 84, 32, 10 };
+
+		arr.swap(0, 9);
+
+		Array<int> expected = { 10, 12, 47, 55, 61, 6, 99, 84, 32, 78 };
+
+		EXPECT_TRUE( arr == expected );
+	}
+
+	TEST_F( ArrayTests, selection_sort )
+	{
+		Array<int> arr = { 78, 12, 47, 55, 61, 6, 99, 84, 32, 10 };
+
+		arr.sort();
+
+		auto test = arr.to_string();
+
+		Array<int> expected = { 6, 10, 12, 32, 47, 55, 61, 78, 84, 99 };
+
+		EXPECT_TRUE( arr == expected );
+	}
 }

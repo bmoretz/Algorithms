@@ -12,6 +12,8 @@ namespace DataStructures
 		size_t m_size;
 		T* m_data;
 
+		void selection_sort();
+
 	public:
 
 		Array( size_t size );
@@ -22,17 +24,19 @@ namespace DataStructures
 		~Array();
 
 		Array<T>& operator=( const Array<T>& );
-		Array<T>& operator=( const std::initializer_list<T> &init_list );
-		
+		Array<T>& operator=( const std::initializer_list<T>& init_list );
+
 		bool operator==( const Array<T>& );
 
 		T& operator[]( size_t index );
-		
+
 		T* begin();
 		T* end();
 
 		void merge( const Array<T>& );
-		
+		void sort();
+		void swap( size_t, size_t );
+
 		size_t size();
 		string to_string();
 	};
@@ -59,7 +63,7 @@ namespace DataStructures
 	template<typename T>
 	inline Array<T>::Array( const Array<T>& copy )
 		: Array<T>( copy.m_size, copy.m_data )
-	{ }
+	{}
 
 	template<typename T>
 	inline Array<T>::Array( const std::initializer_list<T>& init_list ) :
@@ -71,7 +75,7 @@ namespace DataStructures
 	template <typename T>
 	inline Array<T>::~Array()
 	{
-		delete [] m_data;
+		delete[] m_data;
 	}
 
 	template<typename T>
@@ -98,7 +102,7 @@ namespace DataStructures
 	}
 
 	template<typename T>
-	Array<T>& Array<T>::operator=( const std::initializer_list<T> &init_list )
+	Array<T>& Array<T>::operator=( const std::initializer_list<T>& init_list )
 	{
 		m_size = init_list.size();
 		std::copy( init_list.begin(), init_list.end(), m_data );
@@ -107,7 +111,7 @@ namespace DataStructures
 	}
 
 	template<typename T>
-	inline bool Array<T>::operator==( const Array<T>& other )
+	bool Array<T>::operator==( const Array<T>& other )
 	{
 		if( this == &other )
 			return true;
@@ -136,17 +140,17 @@ namespace DataStructures
 	template<typename T>
 	inline T* Array<T>::begin()
 	{
-		return &m_data[0];
+		return &m_data[ 0 ];
 	}
 
 	template<typename T>
 	inline T* Array<T>::end()
 	{
-		return &m_data[m_size];
+		return &m_data[ m_size ];
 	}
 
 	template<typename T>
-	inline void Array<T>::merge( const Array<T>& other )
+	void Array<T>::merge( const Array<T> & other )
 	{
 		size_t new_size = m_size + other.m_size;
 
@@ -164,6 +168,37 @@ namespace DataStructures
 		m_size = new_size;
 
 		delete[] tmp;
+	}
+
+	template<typename T>
+	inline void Array<T>::sort()
+	{
+		selection_sort();
+	}
+
+	template<typename T>
+	inline void Array<T>::swap( size_t l, size_t r )
+	{
+		T tmp = m_data[ l ];
+		m_data[ l ] = m_data[ r ];
+		m_data[ r ] = tmp;
+	}
+
+	template<typename T>
+	void Array<T>::selection_sort()
+	{
+		for( size_t index = 0; index < m_size; index++ )
+		{
+			int smallest = index;
+
+			for( size_t search = smallest; search < m_size; search++ )
+			{
+				if( m_data[ search ] < m_data[ smallest ] )
+					smallest = search;
+			}
+
+			swap( index, smallest );
+		}
 	}
 
 	template<typename T>

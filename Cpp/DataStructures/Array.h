@@ -187,9 +187,9 @@ namespace DataStructures
 	template<typename T>
 	void Array<T>::selection_sort()
 	{
-		for( size_t index = 0; index < m_size; index++ )
+		for( size_t index = 1; index < m_size; index++ )
 		{
-			int smallest = index;
+			int smallest = index - 1;
 
 			for( size_t search = smallest; search < m_size; search++ )
 			{
@@ -197,7 +197,8 @@ namespace DataStructures
 					smallest = search;
 			}
 
-			swap( index, smallest );
+			if( smallest != index - 1 )
+				swap( index - 1, smallest );
 		}
 	}
 

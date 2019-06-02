@@ -305,18 +305,11 @@ namespace LinkedListTests
 
 	TEST_F( LinkedListTests, concat )
 	{
-		LinkedList<int> front;
+		LinkedList<int> front = { 0, 1, 2, 3, 4 };
+		LinkedList<int> back = { 5, 6, 7, 8, 9 };
 
-		front.push_back( 1 );
-		front.push_back( 2 );
-		front.push_back( 3 );
+		LinkedList<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-		LinkedList<int> back;
-
-		back.push_back( 7 );
-		back.push_back( 8 );
-		back.push_back( 9 );
-
-		EXPECT_EQ( front.length(), 0 );
+		EXPECT_TRUE( front + back == expected );
 	}
 }

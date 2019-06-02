@@ -309,7 +309,7 @@ namespace DataStructures
 	inline LinkedList<T>& LinkedList<T>::operator+( const LinkedList<T>& other )
 	{
 		if( other.head == nullptr )
-			return;
+			return *this;
 
 		Node<T> *iter = other.head, *prev = tail;
 
@@ -323,6 +323,8 @@ namespace DataStructures
 
 		tail = prev;
 		tail->next = nullptr;
+
+		return *this;
 	}
 
 	template<typename T>

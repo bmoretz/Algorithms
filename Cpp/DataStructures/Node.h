@@ -14,6 +14,6 @@ namespace DataStructures
 			data = val;
 		}
 
-		Node* next = nullptr;
+		Node *next = nullptr, *prev = nullptr;
 	};
 }

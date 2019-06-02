@@ -26,11 +26,13 @@ namespace DataStructures
         void push_front( T val );
         void push_front( const LinkedList<T> &source );
 
-        T get_value_at( size_t index );
-
+        T element_at( size_t index );
         void insert_at( size_t index, T val );
         void insert_at( size_t index, const LinkedList<T> &source );
 		void remove_at( size_t index );
+
+		void swap( size_t l, size_t r );
+		void reverse();
 
 		LinkedList<T>& operator+( const LinkedList<T>& );
 		bool operator==( const LinkedList<T>& );
@@ -51,16 +53,18 @@ namespace DataStructures
         }
 
     private:
-        Node<T> *head = nullptr, *tail = nullptr;
+        Node<T> *head, *tail;
     };
 
     template <typename T>
     inline LinkedList<T>::LinkedList()
     {
+		head = nullptr, tail = nullptr;
     }
 
 	template<typename T>
 	inline LinkedList<T>::LinkedList( const std::initializer_list<T>& init_list )
+		: LinkedList()
 	{
 		if( init_list.size() == 0 )
 			return;
@@ -71,8 +75,10 @@ namespace DataStructures
 		for( auto it = ( init_list.begin() + 1 ); it != init_list.end(); it++ )
 		{
 			auto node = new Node<T>( *it );
-
+			
+			node->prev = prev;
 			prev->next = node;
+
 			prev = node;
 		}
 
@@ -216,7 +222,7 @@ namespace DataStructures
     }
 
     template <typename T>
-    T LinkedList<T>::get_value_at( size_t index )
+    T LinkedList<T>::element_at( size_t index )
     {
         Node<T> *current = head;
 
@@ -237,7 +243,7 @@ namespace DataStructures
     {
         Node<T> *current = head, *previous = nullptr;
 
-        auto position = 0;
+        size_t position = 0;
 
         while( current != nullptr && position < index )
         {
@@ -332,6 +338,48 @@ namespace DataStructures
 	}
 
 	template<typename T>
+	inline void LinkedList<T>::swap( size_t l, size_t r )
+	{
+		Node<T> *iter = head;
+		size_t position = 0;
+		Node<T> * left = nullptr, * right = nullptr;
+
+		while( true )
+		{
+			if( position == l ) 
+				left = iter;
+
+			if( position == r )
+				right = iter;
+
+			if( ( left != nullptr && right != nullptr ) || iter == tail )
+				break;
+
+			if( iter != nullptr )
+				iter = iter->next;
+			
+			position++;
+		}
+
+		if( left != nullptr && right != nullptr )
+		{
+			T tmp = left->data;
+
+			left->data = right->data;
+			right->data = tmp;
+		}
+	}
+
+	template<typename T>
+	void LinkedList<T>::reverse()
+	{
+		for( size_t index = 0; index < static_cast< size_t >( m_size / 2 ); index++ )
+		{
+			swap( index, m_size - index - 1 );
+		}
+	}
+
+	template<typename T>
 	LinkedList<T>& LinkedList<T>::operator+( const LinkedList<T>& other )
 	{
 		if( other.head == nullptr )
@@ -344,6 +392,7 @@ namespace DataStructures
 			auto node = new Node<T>( iter->data );
 
 			iter = iter->next;
+			node->prev = prev;
 			prev->next = node;
 		}
 

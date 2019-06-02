@@ -31,18 +31,18 @@ namespace LinkedListTests
 
 		int_list.push_front( 1 );
 		EXPECT_EQ( int_list.length(), 1 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 1 );
+		EXPECT_EQ( int_list.element_at( 0 ), 1 );
 
 		int_list.push_front( 2 );
 		EXPECT_EQ( int_list.length(), 2 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 2 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 1 );
+		EXPECT_EQ( int_list.element_at( 0 ), 2 );
+		EXPECT_EQ( int_list.element_at( 1 ), 1 );
 
 		int_list.push_front( 3 );
 		EXPECT_EQ( int_list.length(), 3 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 3 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 2 );
-		EXPECT_EQ( int_list.get_value_at( 2 ), 1 );
+		EXPECT_EQ( int_list.element_at( 0 ), 3 );
+		EXPECT_EQ( int_list.element_at( 1 ), 2 );
+		EXPECT_EQ( int_list.element_at( 2 ), 1 );
 	}
 
 	TEST_F( LinkedListTests, push_back_head_equals_tail )
@@ -72,8 +72,8 @@ namespace LinkedListTests
 		int_list.insert_at( 0, 0 );
 
 		EXPECT_EQ( int_list.length(), 4 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 0 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 1 );
+		EXPECT_EQ( int_list.element_at( 0 ), 0 );
+		EXPECT_EQ( int_list.element_at( 1 ), 1 );
 	}
 
 	TEST_F( LinkedListTests, push_back )
@@ -82,18 +82,18 @@ namespace LinkedListTests
 
 		int_list.push_back( 1 );
 		EXPECT_EQ( int_list.length(), 1 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 1 );
+		EXPECT_EQ( int_list.element_at( 0 ), 1 );
 
 		int_list.push_back( 2 );
 		EXPECT_EQ( int_list.length(), 2 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 1 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 2 );
+		EXPECT_EQ( int_list.element_at( 0 ), 1 );
+		EXPECT_EQ( int_list.element_at( 1 ), 2 );
 
 		int_list.push_back( 3 );
 		EXPECT_EQ( int_list.length(), 3 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 1 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 2 );
-		EXPECT_EQ( int_list.get_value_at( 2 ), 3 );
+		EXPECT_EQ( int_list.element_at( 0 ), 1 );
+		EXPECT_EQ( int_list.element_at( 1 ), 2 );
+		EXPECT_EQ( int_list.element_at( 2 ), 3 );
 	}
 
 	TEST_F( LinkedListTests, insert_at_middle )
@@ -106,9 +106,9 @@ namespace LinkedListTests
 		// Insert at the head of the list (list before is "1 2 3", after is "1 0 2 3").
 		int_list.insert_at( 1, 0 );
 		EXPECT_EQ( int_list.length(), 4 );
-		EXPECT_EQ( int_list.get_value_at( 0 ), 1 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 0 );
-		EXPECT_EQ( int_list.get_value_at( 2 ), 2 );
+		EXPECT_EQ( int_list.element_at( 0 ), 1 );
+		EXPECT_EQ( int_list.element_at( 1 ), 0 );
+		EXPECT_EQ( int_list.element_at( 2 ), 2 );
 	}
 
 	TEST_F( LinkedListTests, insert_at_one_before_tail )
@@ -121,9 +121,9 @@ namespace LinkedListTests
 		// Insert at the head of the list (list before is "1 2 3", after is "1 2 0 3").
 		int_list.insert_at( 2, 0 );
 		EXPECT_EQ( int_list.length(), 4 );
-		EXPECT_EQ( int_list.get_value_at( 1 ), 2 );
-		EXPECT_EQ( int_list.get_value_at( 2 ), 0 );
-		EXPECT_EQ( int_list.get_value_at( 3 ), 3 );
+		EXPECT_EQ( int_list.element_at( 1 ), 2 );
+		EXPECT_EQ( int_list.element_at( 2 ), 0 );
+		EXPECT_EQ( int_list.element_at( 3 ), 3 );
 	}
 
 	TEST_F( LinkedListTests, insert_at_tail )
@@ -136,8 +136,8 @@ namespace LinkedListTests
 		// Insert at the head of the list (list before is "1 2 3", after is "1 2 3 0").
 		int_list.insert_at( 3, 0 );
 		EXPECT_EQ( int_list.length(), 4 );
-		EXPECT_EQ( int_list.get_value_at( 2 ), 3 );
-		EXPECT_EQ( int_list.get_value_at( 3 ), 0 );
+		EXPECT_EQ( int_list.element_at( 2 ), 3 );
+		EXPECT_EQ( int_list.element_at( 3 ), 0 );
 	}
 
 	TEST_F( LinkedListTests, push_front_another_list )
@@ -156,10 +156,10 @@ namespace LinkedListTests
 
 		EXPECT_EQ( dest.length(), 6 );
 
-		EXPECT_EQ( dest.get_value_at( 0 ), 7 );
-		EXPECT_EQ( dest.get_value_at( 1 ), 8 );
-		EXPECT_EQ( dest.get_value_at( 2 ), 9 );
-		EXPECT_EQ( dest.get_value_at( 3 ), 1 );
+		EXPECT_EQ( dest.element_at( 0 ), 7 );
+		EXPECT_EQ( dest.element_at( 1 ), 8 );
+		EXPECT_EQ( dest.element_at( 2 ), 9 );
+		EXPECT_EQ( dest.element_at( 3 ), 1 );
 	}
 
 	TEST_F( LinkedListTests, push_back_another_list )
@@ -178,10 +178,10 @@ namespace LinkedListTests
 
 		EXPECT_EQ( dest.length(), 6 );
 
-		EXPECT_EQ( dest.get_value_at( 2 ), 3 );
-		EXPECT_EQ( dest.get_value_at( 3 ), 7 );
-		EXPECT_EQ( dest.get_value_at( 4 ), 8 );
-		EXPECT_EQ( dest.get_value_at( 5 ), 9 );
+		EXPECT_EQ( dest.element_at( 2 ), 3 );
+		EXPECT_EQ( dest.element_at( 3 ), 7 );
+		EXPECT_EQ( dest.element_at( 4 ), 8 );
+		EXPECT_EQ( dest.element_at( 5 ), 9 );
 
 		EXPECT_EQ( dest.last()->data, 9 );
 	}
@@ -201,10 +201,10 @@ namespace LinkedListTests
 		dest.insert_at( 0, source );
 
 		EXPECT_EQ( dest.length(), 6 );
-		EXPECT_EQ( dest.get_value_at( 0 ), 7 );
-		EXPECT_EQ( dest.get_value_at( 1 ), 8 );
-		EXPECT_EQ( dest.get_value_at( 2 ), 9 );
-		EXPECT_EQ( dest.get_value_at( 3 ), 1 );
+		EXPECT_EQ( dest.element_at( 0 ), 7 );
+		EXPECT_EQ( dest.element_at( 1 ), 8 );
+		EXPECT_EQ( dest.element_at( 2 ), 9 );
+		EXPECT_EQ( dest.element_at( 3 ), 1 );
 	}
 
 	TEST_F( LinkedListTests, insert_another_list_at_position )
@@ -223,11 +223,11 @@ namespace LinkedListTests
 
 		EXPECT_EQ( dest.length(), 6 );
 
-		EXPECT_EQ( dest.get_value_at( 0 ), 1 );
-		EXPECT_EQ( dest.get_value_at( 1 ), 7 );
-		EXPECT_EQ( dest.get_value_at( 2 ), 8 );
-		EXPECT_EQ( dest.get_value_at( 3 ), 9 );
-		EXPECT_EQ( dest.get_value_at( 4 ), 2 );
+		EXPECT_EQ( dest.element_at( 0 ), 1 );
+		EXPECT_EQ( dest.element_at( 1 ), 7 );
+		EXPECT_EQ( dest.element_at( 2 ), 8 );
+		EXPECT_EQ( dest.element_at( 3 ), 9 );
+		EXPECT_EQ( dest.element_at( 4 ), 2 );
 	}
 
 	TEST_F( LinkedListTests, insert_another_list_at_tail )
@@ -246,10 +246,10 @@ namespace LinkedListTests
 		dest.insert_at( 3, source );
 
 		EXPECT_EQ( dest.length(), 6 );
-		EXPECT_EQ( dest.get_value_at( 2 ), 3 );
-		EXPECT_EQ( dest.get_value_at( 3 ), 7 );
-		EXPECT_EQ( dest.get_value_at( 4 ), 8 );
-		EXPECT_EQ( dest.get_value_at( 5 ), 9 );
+		EXPECT_EQ( dest.element_at( 2 ), 3 );
+		EXPECT_EQ( dest.element_at( 3 ), 7 );
+		EXPECT_EQ( dest.element_at( 4 ), 8 );
+		EXPECT_EQ( dest.element_at( 5 ), 9 );
 	}
 
 	TEST_F( LinkedListTests, empty_push_back )
@@ -299,7 +299,7 @@ namespace LinkedListTests
 
 		for( int index = 0; index < expected_len; index++ )
 		{
-			EXPECT_EQ( list.get_value_at( index ), index );
+			EXPECT_EQ( list.element_at( index ), index );
 		}
 	}
 
@@ -339,6 +339,19 @@ namespace LinkedListTests
 
 		list.remove_at( 9 );
 		LinkedList<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+
+		EXPECT_TRUE( list == expected );
+
+		EXPECT_TRUE( list.element_at( 8 ) == 8 );
+	}
+
+	TEST_F( LinkedListTests, swap )
+	{
+		LinkedList<int> list = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		list.swap( 0, 9 );
+
+		LinkedList<int> expected = { 9, 1, 2, 3, 4, 5, 6, 7, 8, 0 };
 
 		EXPECT_TRUE( list == expected );
 	}

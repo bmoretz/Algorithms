@@ -218,7 +218,7 @@ namespace DataStructures
 	{
 		for( size_t index = 1; index < m_size; index++ )
 		{
-			int smallest = index - 1;
+			size_t smallest = index - 1;
 
 			for( size_t search = smallest; search < m_size; search++ )
 			{

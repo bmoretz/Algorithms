@@ -156,6 +156,7 @@ namespace DataStructures
         else
         {
             tail->next = newNode;
+			newNode->prev = tail;
             tail = newNode;
         }
     }
@@ -170,6 +171,7 @@ namespace DataStructures
             Node<T> *newNode = new Node<T>( src->data );
 
             tail->next = newNode;
+			newNode->prev = tail;
             tail = newNode;
 
             src = src->next;
@@ -188,6 +190,7 @@ namespace DataStructures
         else
         {
             newNode->next = head;
+			head->prev = newNode;
             head = newNode;
         }
     }
@@ -212,6 +215,7 @@ namespace DataStructures
             else
             {
                 prevNode->next = newNode;
+				newNode->prev = prevNode;
             }
 
             prevNode = newNode;
@@ -219,6 +223,7 @@ namespace DataStructures
         }
 
         newNode->next = tmp;
+		newNode->prev = prevNode;
     }
 
     template <typename T>
@@ -261,6 +266,8 @@ namespace DataStructures
 
         if( previous != nullptr )
             previous->next = newNode;
+
+		newNode->prev = previous;
     }
 
     template <typename T>

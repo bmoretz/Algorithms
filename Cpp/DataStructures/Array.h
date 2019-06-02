@@ -9,14 +9,10 @@ namespace DataStructures
 	template<typename T>
 	class Array
 	{
-		size_t m_size;
-		T* m_data;
-
-		void selection_sort();
-
 	public:
 
-		Array( size_t size );
+		explicit Array( size_t size );
+
 		Array( size_t size, T[] );
 		Array( const Array<T>& copy );
 		Array( const std::initializer_list<T>& init_list );
@@ -43,6 +39,11 @@ namespace DataStructures
 
 		size_t size();
 		string to_string();
+	private:
+		size_t m_size;
+		T* m_data;
+
+		void selection_sort();
 	};
 
 	template <typename T>

@@ -1,30 +1,20 @@
 #pragma once
 
 #include "pch.h"
+#include "Node.h"
 
 using namespace std;
 
 namespace DataStructures
 {
     template <typename T>
-    struct Node
-    {
-        T data;
-
-        explicit Node( T val )
-        {
-            data = val;
-        }
-
-        Node *next = nullptr;
-    };
-
-    template <typename T>
     class LinkedList
     {
     public:
 
-        LinkedList();
+        explicit LinkedList();
+		LinkedList( const std::initializer_list<T>& init_list );
+
         ~LinkedList();
 
         size_t length() const;
@@ -40,6 +30,9 @@ namespace DataStructures
 
         void insert_at( size_t index, T val );
         void insert_at( size_t index, const LinkedList<T> &source );
+
+		LinkedList<T>& operator+( const LinkedList<T>& );
+		bool operator==( const LinkedList<T>& );
 
         const Node<T>* first() const
         {
@@ -64,6 +57,26 @@ namespace DataStructures
     inline LinkedList<T>::LinkedList()
     {
     }
+
+	template<typename T>
+	inline LinkedList<T>::LinkedList( const std::initializer_list<T>& init_list )
+	{
+		if( init_list.size() == 0 )
+			return;
+
+		head = new Node<T>( *init_list.begin() );
+		Node<T>* prev = head;
+
+		for( auto it = ( init_list.begin() + 1 ); it != init_list.end(); it++ )
+		{
+			auto node = new Node<T>( *it );
+
+			prev->next = node;
+			prev = node;
+		}
+
+		tail = prev;
+	}
 
     template <typename T>
     inline LinkedList<T>::~LinkedList()
@@ -291,4 +304,45 @@ namespace DataStructures
             current->next = srcHead;
         }
     }
+
+	template<typename T>
+	inline LinkedList<T>& LinkedList<T>::operator+( const LinkedList<T>& other )
+	{
+		if( other.head == nullptr )
+			return;
+
+		Node<T> *iter = other.head, *prev = tail;
+
+		while( iter != other.tail )
+		{
+			auto node = new Node<T>( iter->data );
+
+			iter = iter->next;
+			prev->next = node;
+		}
+
+		tail = prev;
+		tail->next = nullptr;
+	}
+
+	template<typename T>
+	bool LinkedList<T>::operator==( const LinkedList<T>& other )
+	{
+		Node<T> *l = head, *r = other.head;
+
+		bool equals = true;
+
+		while( l != nullptr && r != nullptr && l != tail && r != other.tail )
+		{
+			equals &= l->data == r->data;
+
+			if( !equals )
+				break;
+
+			l = l->next; 
+			r = r->next;
+		}
+
+		return equals;
+	}
 }

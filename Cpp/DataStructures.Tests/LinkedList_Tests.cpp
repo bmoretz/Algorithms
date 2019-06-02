@@ -292,7 +292,7 @@ namespace LinkedListTests
 	TEST_F( LinkedListTests, init_list )
 	{
 		LinkedList<int> list = { 0, 1, 2, 3, 4 };
-		
+
 		const int expected_len = 5;
 
 		EXPECT_EQ( list.length(), expected_len );
@@ -311,5 +311,35 @@ namespace LinkedListTests
 		LinkedList<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 		EXPECT_TRUE( front + back == expected );
+	}
+
+	TEST_F( LinkedListTests, remove_at )
+	{
+		LinkedList<int> list = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		list.remove_at( 5 );
+		LinkedList<int> expected = { 0, 1, 2, 3, 4, 6, 7, 8, 9 };
+
+		EXPECT_TRUE( list == expected );
+	}
+
+	TEST_F( LinkedListTests, remove_at_head )
+	{
+		LinkedList<int> list = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		list.remove_at( 0 );
+		LinkedList<int> expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		EXPECT_TRUE( list == expected );
+	}
+
+	TEST_F( LinkedListTests, remove_at_tail )
+	{
+		LinkedList<int> list = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		list.remove_at( 9 );
+		LinkedList<int> expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+
+		EXPECT_TRUE( list == expected );
 	}
 }

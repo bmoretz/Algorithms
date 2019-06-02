@@ -30,6 +30,7 @@ namespace DataStructures
 
         void insert_at( size_t index, T val );
         void insert_at( size_t index, const LinkedList<T> &source );
+		void remove_at( size_t index );
 
 		LinkedList<T>& operator+( const LinkedList<T>& );
 		bool operator==( const LinkedList<T>& );
@@ -306,7 +307,32 @@ namespace DataStructures
     }
 
 	template<typename T>
-	inline LinkedList<T>& LinkedList<T>::operator+( const LinkedList<T>& other )
+	void LinkedList<T>::remove_at( size_t position )
+	{
+		Node<T> *iter = head, *prev = nullptr;
+
+		size_t index = 0;
+
+		while( index < position )
+		{
+			prev = iter;
+			iter = iter->next;
+			index++;
+		}
+
+		auto next = iter->next;
+
+		if( head == iter )
+			head = next;
+
+		delete iter;
+
+		if( prev != nullptr )
+			prev->next = next;
+	}
+
+	template<typename T>
+	LinkedList<T>& LinkedList<T>::operator+( const LinkedList<T>& other )
 	{
 		if( other.head == nullptr )
 			return *this;

@@ -355,4 +355,15 @@ namespace LinkedListTests
 
 		EXPECT_TRUE( list == expected );
 	}
+
+	TEST_F( LinkedListTests, reverse )
+	{
+		LinkedList<int> list = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+		list.reverse();
+
+		LinkedList<int> expected = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+
+		EXPECT_TRUE( list == expected );
+	}
 }

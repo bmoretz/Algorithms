@@ -4,14 +4,31 @@
 #include "pch.h"
 #include "LinkedList.h"
 
+#include "Primes.h"
+#include "Coins.h"
+
 using namespace std;
+using namespace Algorithms;
 
 void exec_list();
 void array_test();
 
 int main()
 {
-	array_test();
+	int coins, trials;
+
+	cout << "Enter the number of coins:";
+	cin >> coins;
+	cout << "Enter the number of trials:";
+	cin >> trials;
+
+	cout << "Distribution:" << endl;
+
+	Coins c;
+	c.flip( coins, trials );
+
+	string empty;
+	cin >> empty;
 
     return 0;
 }

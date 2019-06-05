@@ -380,10 +380,21 @@ namespace DataStructures
 	template<typename T>
 	void LinkedList<T>::reverse()
 	{
-		for( size_t index = 0; index < static_cast< size_t >( m_size / 2 ); index++ )
+		auto iter = head;
+		Node<T> * prev = nullptr, *next = nullptr;
+
+		while( iter != nullptr )
 		{
-			swap( index, m_size - index - 1 );
+			next = iter->next;
+
+			iter->next = prev;
+			prev = iter;
+			iter->prev = iter;
+
+			iter = next;
 		}
+
+		head = prev;
 	}
 
 	template<typename T>

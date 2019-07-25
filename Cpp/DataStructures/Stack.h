@@ -10,6 +10,8 @@ namespace DataStructures
 
 	public:
 		explicit Stack<T>();
+		
+		Stack<T>( size_t size );
 		Stack( const std::initializer_list<T> & init_list );
 		~Stack();
 
@@ -21,10 +23,11 @@ namespace DataStructures
 	private:
 		size_t m_size;
 		T * m_data;
+		inline static size_t DFLT_SIZE = 10;
 	};
 
 	template<typename T>
-	inline Stack<T>::Stack<T>()
+	inline Stack<T>::Stack<T>( size_t size )
 	{
 
 	}
@@ -44,6 +47,7 @@ namespace DataStructures
 	template<typename T>
 	inline void Stack<T>::enqueue( T * item )
 	{
+
 	}
 
 	template<typename T>

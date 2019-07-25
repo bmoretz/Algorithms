@@ -10,3 +10,5 @@ Recursion/Tests/x64/
 */.vs/*
 */packages/
 Cpp/DataStructures\.Tests/Debug/
+
+Cpp/Algorithms\.Tests/Debug/
